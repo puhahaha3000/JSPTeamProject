@@ -50,9 +50,11 @@ public class NoticeWriteServlet extends HttpServlet{
 		
 		Connection conn = null;
 		
-		String title = req.getParameter("TITLE");
-		String text = req.getParameter("TEXT");
-		int writer = Integer.parseInt(req.getParameter("WRITER"));
+		String title = req.getParameter("title");
+		String text = req.getParameter("text");
+		
+		MemberDto writer = new MemberDto();
+		writer.setNo(Integer.parseInt(req.getParameter("writer")));
 		
 		NoticeDto noticeDto = new NoticeDto();
 		
@@ -60,27 +62,27 @@ public class NoticeWriteServlet extends HttpServlet{
 		noticeDto.setTitle(title);
 		noticeDto.setWriter(writer);
 		
+		ServletContext sc = this.getServletContext();
+		conn = (Connection) sc.getAttribute("conn");
+		
+		NoticeDao noticeDao = new NoticeDao();
+		noticeDao.setConnection(conn);
 		try {
-			ServletContext sc = this.getServletContext();
-			conn = (Connection) sc.getAttribute("conn");
 			
-			NoticeDao noticeDao = new NoticeDao();
-			noticeDao.setConnection(conn);
+			int result;
 			
-			ArrayList<NoticeDto> noticeList = null;
-			
-			noticeList = (ArrayList<NoticeDto>)noticeDao.addList();
-			
-			req.setAttribute("noticeList", noticeList);
+			result = noticeDao.addList(noticeDto);
+			if(result == 0) {
+				System.out.println("등록 실패");
+			}else {
+				System.out.println(result + "행 등록 완료");
+			}
 
 			res.setContentType("text/html");
 			res.setCharacterEncoding("UTF-8");
 			
 			//jsp로 출력을 위임한다
-			RequestDispatcher dispatcher = 
-					req.getRequestDispatcher("./NoticeView.jsp");
-			
-			dispatcher.include(req, res);
+			res.sendRedirect("./list");
 			
 		} catch (Exception e) {
 			req.setAttribute("error", e);
