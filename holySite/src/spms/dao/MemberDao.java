@@ -277,13 +277,15 @@ public class MemberDao {
 		
 		String sql = "";
 		
-		sql += "SELECT NICKNAME, EMAIL, GRADE";
+		sql += "SELECT NO, NICKNAME, EMAIL, GRADE";
 		sql += " FROM MEMBER";
 		sql += " WHERE EMAIL = ?";
 		sql += " AND PWD = ?";
 		
 		String nickname = "";
 		String grade ="";
+		int no =0;
+		
 		try {
 			pstmt = conn.prepareStatement(sql);
 			
@@ -297,10 +299,12 @@ public class MemberDao {
 			MemberDto memberDto = new MemberDto();
 			
 			if(rs.next()) {
+				no = rs.getInt("no");
 				email = rs.getString("email");
 				nickname = rs.getString("nickname");
 				grade = rs.getString("grade");
 				
+				memberDto.setNo(no);
 				memberDto.setEmail(email);
 				memberDto.setNickname(nickname);
 				memberDto.setGrade(grade);
