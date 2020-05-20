@@ -89,7 +89,7 @@ public class MemberDao {
 		try {
 			String email = memberDto.getEmail();
 			String pwd = memberDto.getPwd();
-			String name = memberDto.getNickname();
+			String nickname = memberDto.getNickname();
 
 			String sql = "INSERT INTO MEMBER" ;
 			sql	+= " (NO, EMAIL, PWD, NICKNAME, GRADE)";
@@ -100,7 +100,7 @@ public class MemberDao {
 
 			pstmt.setString(1, email);
 			pstmt.setString(2, pwd);
-			pstmt.setString(3, name);
+			pstmt.setString(3, nickname);
 			
 			result = pstmt.executeUpdate();
 
