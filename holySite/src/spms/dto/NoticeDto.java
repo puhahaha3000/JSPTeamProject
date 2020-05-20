@@ -2,7 +2,7 @@ package spms.dto;
 
 import java.util.Date;
 
-public class BulletinDto {
+public class NoticeDto {
 	private int no;
 	private String title;
 	private String text;
@@ -10,12 +10,12 @@ public class BulletinDto {
 	private MemberDto writer;
 	
 	
-	public BulletinDto() {
+	public NoticeDto() {
 		super();
 	}
 
 
-	public BulletinDto(int no, String title, String text, Date createdDate, MemberDto writer) {
+	public NoticeDto(int no, String title, String text, Date createdDate, MemberDto writer) {
 		super();
 		this.no = no;
 		this.title = title;
@@ -77,7 +77,7 @@ public class BulletinDto {
 
 	@Override
 	public String toString() {
-		return "BulletinDto [no=" + no + ", title=" + title + ", text=" + text + ", createdDate=" + createdDate
+		return "NoticeDto [no=" + no + ", title=" + title + ", text=" + text + ", createdDate=" + createdDate
 				+ ", writer=" + writer + "]";
 	}
 	
