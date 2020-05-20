@@ -60,7 +60,7 @@ public class LoginServlet extends HttpServlet {
 				//회원이 존재한다면 세션에 담고 회원이 전체 페이지로 이동
 				HttpSession session = req.getSession();
 				session.setAttribute("member", memberDto);
-				if(memberDto.getGrade() == "1") {
+				if(memberDto.getGrade().equals("1")) {
 					res.sendRedirect("../adminPage.jsp");
 				} else {
 					res.sendRedirect("../member/list");

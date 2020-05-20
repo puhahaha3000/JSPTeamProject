@@ -24,19 +24,19 @@
 		function pageMoveMemberList(){
 			location.href = "./member/list"
 		}
-		function pageMoveMemberList(){
+		function pageMoveMemberAdd(){
 			location.href = "./member/add"
 		}
-		function pageMoveMemberList(){
+		function pageMoveBulletinList(){
 			location.href = "./bulletin/list"
 		}
-		function pageMoveMemberList(){
+		function pageMoveBulletinWrite(){
 			location.href = "./bulletin/add"
 		}
-		function pageMoveMemberList(){
+		function pageMoveNoticeList(){
 			location.href = "./notice/list"
 		}
-		function pageMoveMemberList(){
+		function pageMoveNoticeWrite(){
 			location.href = "./notice/add"
 		}
 	</script>
