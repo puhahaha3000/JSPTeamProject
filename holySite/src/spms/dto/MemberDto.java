@@ -5,7 +5,7 @@ public class MemberDto {
 	private String email;
 	private String pwd;
 	private String nickname;
-	private String grade;
+	private String grade = "0";
 	
 	
 	public MemberDto() {
@@ -29,8 +29,18 @@ public class MemberDto {
 		this.email = email;
 		this.pwd = pwd;
 		this.nickname = nickname;
-		this.grade = "0";
 	}
+
+
+	public MemberDto(int no, String email, String pwd, String nickname, String grade) {
+		super();
+		this.no = no;
+		this.email = email;
+		this.pwd = pwd;
+		this.nickname = nickname;
+		this.grade = grade;
+	}
+
 
 
 	public int getNo() {

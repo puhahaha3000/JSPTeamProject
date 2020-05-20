@@ -22,7 +22,7 @@ public class MemberDao {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 
-		String sql = "SELECT NO, NICKNAME, EMAIL";
+		String sql = "SELECT NO, NICKNAME, EMAIL, GRADE";
 		sql += " FROM MEMBER";
 		sql += " ORDER BY NO ASC";
 
@@ -34,16 +34,18 @@ public class MemberDao {
 			ArrayList<MemberDto> memberList = 
 				new ArrayList<MemberDto>();
 			int no = 0;
-			String name = "";
+			String nickname = "";
 			String email = "";
-
+			String grade = "";
+			
 			while (rs.next()) {
 				no = rs.getInt("NO");
-				name = rs.getString("NICKNAME");
+				nickname = rs.getString("NICKNAME");
 				email = rs.getString("EMAIL");
-
+				grade = rs.getString("GRADE");
+				
 				MemberDto memberDto = 
-					new MemberDto(no, name, email);
+					new MemberDto(no, email, "", nickname, grade);
 
 				memberList.add(memberDto);
 			}
@@ -280,8 +282,8 @@ public class MemberDao {
 		sql += " WHERE EMAIL = ?";
 		sql += " AND PWD = ?";
 		
-		String name = "";
-		
+		String nickname = "";
+		String grade ="";
 		try {
 			pstmt = conn.prepareStatement(sql);
 			
@@ -296,10 +298,12 @@ public class MemberDao {
 			
 			if(rs.next()) {
 				email = rs.getString("email");
-				name = rs.getString("nickname");
+				nickname = rs.getString("nickname");
+				grade = rs.getString("grade");
 				
 				memberDto.setEmail(email);
-				memberDto.setNickname(name);
+				memberDto.setNickname(nickname);
+				memberDto.setGrade(grade);
 				
 				// 회원 정보 조회 확인
 				return memberDto;
