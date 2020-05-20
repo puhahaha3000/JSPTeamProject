@@ -29,8 +29,14 @@
 	function updateFnc() {
 		location.href='./update';
 	}
-	function deleteFnc() {
-		location.href='./delete';
+	function deleteFnc(no) {
+		const result = confirm('정말 탈퇴하시겠습니까?')
+		if(result){
+			location.href='./delete?no='+no;
+		}else{
+			return false;
+		}
+		
 	}
 
 </script>
@@ -45,19 +51,22 @@
 			<td class="firstTd">회원번호</td>
 			<td class="secondTd">닉네임</td>
 			<td class="thirdTd">이메일</td>
+			<td class="forthTd">수정</td>
+			<td class="fifthTd">삭제</td>
 		</tr>
 		<c:forEach var="memberDto" items="${memberList}">
 			<tr>
 				<td>${memberDto.no}</td>
 				<td>${memberDto.nickname}</td>
 				<td>${memberDto.email}</td>
+				<td><button onclick="updateFnc(${memberDto.no})">수정</button></td>
+				<td><button onclick="deleteFnc(${memberDto.no});">삭제</button></td>
 			</tr>	
 		</c:forEach>		
 	</table>
 	
 	<button onclick="addFnc()">추가</button>
-	<button onclick="updateFnc()">수정</button>
-	<button onclick="deleteFnc()">삭제</button>
+	
 
 	<jsp:include page="/Tail.jsp" />
 </body>
