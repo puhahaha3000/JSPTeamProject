@@ -5,21 +5,31 @@ public class MemberDto {
 	private String email;
 	private String pwd;
 	private String nickname;
-	private int grade;
+	private String grade;
 	
 	
 	public MemberDto() {
 		super();
 	}
 
+	
 
-	public MemberDto(int no, String email, String pwd, String nickname, int grade) {
+	public MemberDto(int no, String email, String nickname) {
+		super();
+		this.no = no;
+		this.email = email;
+		this.nickname = nickname;
+	}
+
+
+
+	public MemberDto(int no, String email, String pwd, String nickname) {
 		super();
 		this.no = no;
 		this.email = email;
 		this.pwd = pwd;
 		this.nickname = nickname;
-		this.grade = grade;
+		this.grade = "0";
 	}
 
 
@@ -63,12 +73,12 @@ public class MemberDto {
 	}
 
 
-	public int getGrade() {
+	public String getGrade() {
 		return grade;
 	}
 
 
-	public void setGrade(int grade) {
+	public void setGrade(String grade) {
 		this.grade = grade;
 	}
 

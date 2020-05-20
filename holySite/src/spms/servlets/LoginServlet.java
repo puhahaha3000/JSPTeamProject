@@ -15,6 +15,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import spms.dao.MemberDao;
+import spms.dto.MemberDto;
+
 
 @WebServlet(value = "/auth/login")
 public class LoginServlet extends HttpServlet {
