@@ -22,9 +22,9 @@ public class MemberDao {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 
-		String sql = "SELECT MNO, MNAME, EMAIL, CRE_DATE";
+		String sql = "SELECT NO, NICKNAME, EMAIL, GRADE";
 		sql += " FROM MEMBER";
-		sql += " ORDER BY MNO ASC";
+		sql += " ORDER BY NO ASC";
 
 		try {
 			pstmt = conn.prepareStatement(sql);
@@ -34,17 +34,18 @@ public class MemberDao {
 			ArrayList<MemberDto> memberList = 
 				new ArrayList<MemberDto>();
 			int no = 0;
-			int grade = 0;
-			String name = "";
+			String nickname = "";
 			String email = "";
-
+			String grade = "";
+			
 			while (rs.next()) {
 				no = rs.getInt("NO");
-				name = rs.getString("NICKNAME");
+				nickname = rs.getString("NICKNAME");
 				email = rs.getString("EMAIL");
-
+				grade = rs.getString("GRADE");
+				
 				MemberDto memberDto = 
-					new MemberDto(no, name, email);
+					new MemberDto(no, email, "", nickname, grade);
 
 				memberList.add(memberDto);
 			}
@@ -88,7 +89,7 @@ public class MemberDao {
 		try {
 			String email = memberDto.getEmail();
 			String pwd = memberDto.getPwd();
-			String name = memberDto.getNickname();
+			String nickname = memberDto.getNickname();
 
 			String sql = "INSERT INTO MEMBER" ;
 			sql	+= " (NO, EMAIL, PWD, NICKNAME, GRADE)";
@@ -99,7 +100,7 @@ public class MemberDao {
 
 			pstmt.setString(1, email);
 			pstmt.setString(2, pwd);
-			pstmt.setString(3, name);
+			pstmt.setString(3, nickname);
 			
 			result = pstmt.executeUpdate();
 
@@ -129,7 +130,7 @@ public class MemberDao {
 
 		String sql = "";
 		sql = "DELETE FROM MEMBER";
-		sql += " WHERE MNO = ?";
+		sql += " WHERE NO = ?";
 
 		try {
 			pstmt = conn.prepareStatement(sql);
@@ -247,7 +248,7 @@ public class MemberDao {
 			pstmt.setString(1, memberDto.getEmail());
 			pstmt.setString(2, memberDto.getNickname());
 			pstmt.setString(3, memberDto.getPwd());
-			pstmt.setString(4, memberDto.getGrade());/* 문제 */
+			pstmt.setString(4, memberDto.getGrade());
 
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
@@ -276,13 +277,13 @@ public class MemberDao {
 		
 		String sql = "";
 		
-		sql += "SELECT NICKNAME, EMAIL";
+		sql += "SELECT NICKNAME, EMAIL, GRADE";
 		sql += " FROM MEMBER";
 		sql += " WHERE EMAIL = ?";
 		sql += " AND PWD = ?";
 		
-		String name = "";
-		
+		String nickname = "";
+		String grade ="";
 		try {
 			pstmt = conn.prepareStatement(sql);
 			
@@ -297,10 +298,12 @@ public class MemberDao {
 			
 			if(rs.next()) {
 				email = rs.getString("email");
-				name = rs.getString("nickname");
+				nickname = rs.getString("nickname");
+				grade = rs.getString("grade");
 				
 				memberDto.setEmail(email);
-				memberDto.setNickname(name);
+				memberDto.setNickname(nickname);
+				memberDto.setGrade(grade);
 				
 				// 회원 정보 조회 확인
 				return memberDto;

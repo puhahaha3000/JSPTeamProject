@@ -24,7 +24,7 @@ public class MemberAddServlet extends HttpServlet{
 		// TODO Auto-generated method stub
 		
 		// 337 1번 문제 입력화면 생성 코드 제거	
-		res.sendRedirect("../member/MemberView.jsp");
+		res.sendRedirect("../member/memberAddView.jsp");
 	}
 	
 	@Override
@@ -34,14 +34,16 @@ public class MemberAddServlet extends HttpServlet{
 		Connection conn = null;
 		
 		String email = req.getParameter("email");
-		String pwd = req.getParameter("password");
-		String name = req.getParameter("name");
+		String pwd = req.getParameter("pwd");
+		String nickname = req.getParameter("nickname");
+		String grade = req.getParameter("grade");
 		
 		MemberDto memberDto = new MemberDto();
 		
 		memberDto.setEmail(email);
-		memberDto.setPassword(pwd);
-		memberDto.setName(name);
+		memberDto.setPwd(pwd);
+		memberDto.setNickname(nickname);
+		memberDto.setGrade(grade);
 		
 		ServletContext sc = this.getServletContext();
 

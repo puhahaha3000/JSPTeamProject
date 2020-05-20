@@ -5,18 +5,30 @@
 <head>
 <title>로그인</title>
 
+<link rel="stylesheet" href="../css/common.css" type="text/css">
+
 </head>
 
 <body>
-	<jsp:include page="/Header.jsp"/>
-	
-	<h2>로그인</h2>
-	<form action="./login" method="post">
-		이메일: 	<input type="text" name="email"><br>
-		암호: 	<input type="password" name="password"><br>
-				<input type="submit" value="로그인">
-	</form>
-	
-	<jsp:include page="/Tail.jsp"/>
+	<div id="page">
+		<jsp:include page="/Header.jsp"/>
+		
+		<h2>로그인</h2>
+		<form action="./login" method="post">
+			이메일: 	<input type="text" name="email"><br>
+			암호: 	<input type="password" name="password"><br>
+			<input type="submit" value="로그인">
+			<input type="button" value="회원가입">		
+		</form>
+		
+		<jsp:include page="/Tail.jsp"/>
+	</div>
 </body>
+
+<script type="text/javascript">
+	function pageMoveAddMember(){
+		location.href = "../member/add";
+	}
+</script>
+
 </html>

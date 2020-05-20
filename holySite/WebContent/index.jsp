@@ -5,24 +5,30 @@
 <head>
 
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>게시판</title>
 
-<script type="text/javascript">
-	function listPageMoveFnc() {
-		location.href = '<%=request.getContextPath()%>/auth/login';
-	}
-</script>
+<link rel="stylesheet" href="./css/common.css" type="text/css">
 
 </head>
 
 <body>
 	
-	<jsp:include page="/Header.jsp"/>
+	<div id="page">
+		<jsp:include page="/Header.jsp"/>
 	
-	<p onclick="listPageMoveFnc();">Team</p>
+		<p>게시판 홈페이지입니다.</p>
+		<input type="button" onclick="pageMoveLogin();" value="로그인">
+		<input type="button" value="회원가입">
 	
-	<jsp:include page="/Tail.jsp"/>
+		<jsp:include page="/Tail.jsp"/>
+	</div>
 
 </body>
+
+<script type="text/javascript">
+	function pageMoveLogin() {
+		location.href = '<%=request.getContextPath()%>/auth/login';
+	}
+</script>
 
 </html>
