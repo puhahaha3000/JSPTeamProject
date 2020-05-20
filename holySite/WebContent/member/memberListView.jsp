@@ -24,13 +24,13 @@
 </style>
 <script type="text/javascript">
 	function addFnc() {
-		location.href='./memberAddView.jsp';
+		location.href='./add';
 	}
 	function updateFnc() {
-		location.href='./memberUpdateView.jsp';
+		location.href='./update';
 	}
 	function deleteFnc() {
-		location.href='./memberDeleteView.jsp';
+		location.href='./delete';
 	}
 
 </script>
@@ -46,13 +46,13 @@
 			<td class="secondTd">닉네임</td>
 			<td class="thirdTd">이메일</td>
 		</tr>
-		<tr>
-			<c:forEach var="memberDto" items="${memberList}">
+		<c:forEach var="memberDto" items="${memberList}">
+			<tr>
 				<td>${memberDto.no}</td>
 				<td>${memberDto.nickname}</td>
 				<td>${memberDto.email}</td>
-			</c:forEach>		
-		</tr>	
+			</tr>	
+		</c:forEach>		
 	</table>
 	
 	<button onclick="addFnc()">추가</button>
