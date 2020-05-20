@@ -24,6 +24,16 @@ public class NoticeDto {
 		this.writer = writer;
 	}
 
+	
+
+	public NoticeDto(int no, String title, Date createdDate, MemberDto writer) {
+		super();
+		this.no = no;
+		this.title = title;
+		this.createdDate = createdDate;
+		this.writer = writer;
+	}
+
 
 	public int getNo() {
 		return no;
