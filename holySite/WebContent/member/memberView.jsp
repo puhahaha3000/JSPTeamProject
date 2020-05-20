@@ -6,24 +6,42 @@
 
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<style type="text/css">
-	table{
+<style type="text/css">	
+	table, tr, td{
 		border: 1px solid black;
 	}
-	
-	table, tr, td{
-	
+	td{ 
+		width : 100px;
+		text-align: center;
 	}
+	button {
+		width : 80px;
+		margin-right: 20px;
+		margin-top : 50px;
+}
 </style>
 </head>
 
 <body>
 
+	<h1>회원목록</h1>
+	
 	<table>
 		<tr>
-			<td></td>
+			<td class="firstTd">회원번호</td>
+			<td class="secondTd">이름</td>
+			<td class="thirdTd">닉네임</td>
+		</tr>
+		<tr>
+			<td>샘플1</td>
+			<td>우와</td>
+			<td>우와아</td>
 		</tr>
 	</table>
+	
+	<button>추가</button>
+	<button>수정</button>
+	<button>삭제</button>
 
 </body>
 

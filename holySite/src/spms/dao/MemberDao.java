@@ -22,9 +22,9 @@ public class MemberDao {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 
-		String sql = "SELECT NO, EMAIL, NICKNAME";
+		String sql = "SELECT MNO, MNAME, EMAIL, CRE_DATE";
 		sql += " FROM MEMBER";
-		sql += " ORDER BY NO ASC";
+		sql += " ORDER BY MNO ASC";
 
 		try {
 			pstmt = conn.prepareStatement(sql);
@@ -34,16 +34,17 @@ public class MemberDao {
 			ArrayList<MemberDto> memberList = 
 				new ArrayList<MemberDto>();
 			int no = 0;
+			int grade = 0;
+			String name = "";
 			String email = "";
-			String nickname = "";
 
 			while (rs.next()) {
 				no = rs.getInt("NO");
+				name = rs.getString("NICKNAME");
 				email = rs.getString("EMAIL");
-				nickname = rs.getString("NICKNAME");
 
 				MemberDto memberDto = 
-					new MemberDto(no, email, nickname);
+					new MemberDto(no, name, email);
 
 				memberList.add(memberDto);
 			}
@@ -87,18 +88,19 @@ public class MemberDao {
 		try {
 			String email = memberDto.getEmail();
 			String pwd = memberDto.getPwd();
-			String nickname = memberDto.getNickname();
+			String name = memberDto.getNickname();
 
-			String sql = "INSERT INTO MEMBER"
-			+ " VALUES(MEMBER_NO_SEQ.NEXTVAL"
-			+ " , ?, ?, ?)";
+			String sql = "INSERT INTO MEMBER" ;
+			sql	+= " (NO, EMAIL, PWD, NICKNAME, GRADE)";
+			sql	+= " VALUES(MEMBER_NO_SEQ.NEXTVAL";
+			sql	+= " , ?, ?, ?, '0')";
 
 			pstmt = conn.prepareStatement(sql);
 
 			pstmt.setString(1, email);
 			pstmt.setString(2, pwd);
-			pstmt.setString(3, nickname);
-
+			pstmt.setString(3, name);
+			
 			result = pstmt.executeUpdate();
 
 		} catch (Exception e) {
@@ -127,7 +129,7 @@ public class MemberDao {
 
 		String sql = "";
 		sql = "DELETE FROM MEMBER";
-		sql += " WHERE NO = ?";
+		sql += " WHERE MNO = ?";
 
 		try {
 			pstmt = conn.prepareStatement(sql);
@@ -166,7 +168,7 @@ public class MemberDao {
 
 		String sql = "";
 
-		sql = "SELECT NO, EMAIL, PWD, NICKNAME";
+		sql = "SELECT NO, EMAIL, NICKNAME, PWD, GRADE";
 		sql += " FROM MEMBER";
 		sql += " WHERE NO =?";
 
@@ -177,19 +179,25 @@ public class MemberDao {
 
 			rs = pstmt.executeQuery();
 
-			String nickname = "";
+
+			String name = "";
 			String email = "";
+			String pwd ="";
+			String grade ="";
 
 			if (rs.next()) {
-				nickname = rs.getString("MNAME");
+				name = rs.getString("NICKNAME");
 				email = rs.getString("EMAIL");
+				
 
 				memberDto = new MemberDto();
 
 				memberDto.setNo(no);
-				memberDto.setNickname(nickname);
+				memberDto.setNickname(name);
 				memberDto.setEmail(email);
-				
+				memberDto.setPwd(pwd);
+				memberDto.setGrade(grade);
+
 			} else {
 				throw new Exception("해당 번호의 회원을 찾을 수 없습니다.");
 			}
@@ -230,15 +238,16 @@ public class MemberDao {
 
 		String sql = "";
 		sql = "UPDATE MEMBER";
-		sql += " SET EMAIL=?, NICKNAME=?";
-		sql += " WHERE MNO =?";
+		sql += " SET EMAIL=?, NICKNAME=?, PWD=?, GRADE =?";
+		sql += " WHERE NO =?";
 
 		try {
 			pstmt = conn.prepareStatement(sql);
 
 			pstmt.setString(1, memberDto.getEmail());
 			pstmt.setString(2, memberDto.getNickname());
-			pstmt.setInt(3, memberDto.getNo());
+			pstmt.setString(3, memberDto.getPwd());
+			pstmt.setString(4, memberDto.getGrade());/* 문제 */
 
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
@@ -266,17 +275,18 @@ public class MemberDao {
 		ResultSet rs = null;
 		
 		String sql = "";
-		sql += "SELECT EMAIL, NICKNAME";
+		
+		sql += "SELECT NICKNAME, EMAIL";
 		sql += " FROM MEMBER";
 		sql += " WHERE EMAIL = ?";
 		sql += " AND PWD = ?";
 		
-		String nickname = "";
+		String name = "";
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
 			
-			int colIndex = 1; 
+			int colIndex = 1;
 			
 			pstmt.setString(colIndex++, email);
 			pstmt.setString(colIndex, pwd);
@@ -286,11 +296,12 @@ public class MemberDao {
 			MemberDto memberDto = new MemberDto();
 			
 			if(rs.next()) {
-				email = rs.getString("EMAIL");
-				nickname = rs.getString("NICKNAME");
+				email = rs.getString("email");
+				name = rs.getString("nickname");
 				
 				memberDto.setEmail(email);
-				memberDto.setNickname(nickname);
+				memberDto.setNickname(name);
+				
 				// 회원 정보 조회 확인
 				return memberDto;
 			}
@@ -300,7 +311,6 @@ public class MemberDao {
 			e.printStackTrace();
 			throw e;
 		}finally {
-
 			try {
 				if (rs != null) {
 					rs.close();
@@ -318,14 +328,7 @@ public class MemberDao {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-
 		}
-		// 회원이 조회가 안된 경우
 		return null;
 	}
-	
-	
-	
-	
-	
 }
