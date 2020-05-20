@@ -7,8 +7,12 @@
 <head>
 
 <meta charset="UTF-8">
-<title>회원 삭제</title>
-
+<title>회원 추가</title>
+<script type="text/javascript">
+	function pageMoveListFnc(){
+		location.href = "./list";
+	}
+</script>
 </head>
 
 <body>
@@ -35,7 +39,7 @@
 		
 		<input type="submit" onclick="" value="가입하기">
 		<input type="reset" value="초기화">
-		<input type="button" value="취소" onclick="location.href='./memberListView.jsp'">
+		<input type="button" value="취소" onclick="pageMoveListFnc()">
 	</form>
 	<jsp:include page="/Tail.jsp" />
 </body>
