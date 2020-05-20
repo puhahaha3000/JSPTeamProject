@@ -277,7 +277,7 @@ public class MemberDao {
 		
 		String sql = "";
 		
-		sql += "SELECT NICKNAME, EMAIL";
+		sql += "SELECT NICKNAME, EMAIL, GRADE";
 		sql += " FROM MEMBER";
 		sql += " WHERE EMAIL = ?";
 		sql += " AND PWD = ?";
