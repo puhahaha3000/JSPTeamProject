@@ -22,9 +22,9 @@ public class MemberDao {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 
-		String sql = "SELECT MNO, MNAME, EMAIL, CRE_DATE";
+		String sql = "SELECT NO, MNAME, EMAIL, CRE_DATE";
 		sql += " FROM MEMBER";
-		sql += " ORDER BY MNO ASC";
+		sql += " ORDER BY NO ASC";
 
 		try {
 			pstmt = conn.prepareStatement(sql);
@@ -129,7 +129,7 @@ public class MemberDao {
 
 		String sql = "";
 		sql = "DELETE FROM MEMBER";
-		sql += " WHERE MNO = ?";
+		sql += " WHERE NO = ?";
 
 		try {
 			pstmt = conn.prepareStatement(sql);
@@ -247,7 +247,7 @@ public class MemberDao {
 			pstmt.setString(1, memberDto.getEmail());
 			pstmt.setString(2, memberDto.getNickname());
 			pstmt.setString(3, memberDto.getPwd());
-			pstmt.setString(4, memberDto.getGrade());/* 문제 */
+			pstmt.setString(4, memberDto.getGrade());
 
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
