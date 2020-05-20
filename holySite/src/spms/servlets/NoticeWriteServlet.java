@@ -56,6 +56,10 @@ public class NoticeWriteServlet extends HttpServlet{
 		
 		NoticeDto noticeDto = new NoticeDto();
 		
+		noticeDto.setText(text);
+		noticeDto.setTitle(title);
+		noticeDto.setWriter(writer);
+		
 		try {
 			ServletContext sc = this.getServletContext();
 			conn = (Connection) sc.getAttribute("conn");
