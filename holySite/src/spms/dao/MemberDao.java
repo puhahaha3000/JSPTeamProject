@@ -22,7 +22,7 @@ public class MemberDao {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 
-		String sql = "SELECT NO, MNAME, EMAIL, CRE_DATE";
+		String sql = "SELECT NO, NICKNAME, EMAIL";
 		sql += " FROM MEMBER";
 		sql += " ORDER BY NO ASC";
 
@@ -34,7 +34,6 @@ public class MemberDao {
 			ArrayList<MemberDto> memberList = 
 				new ArrayList<MemberDto>();
 			int no = 0;
-			int grade = 0;
 			String name = "";
 			String email = "";
 

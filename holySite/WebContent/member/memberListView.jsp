@@ -29,8 +29,8 @@
 	<table>
 		<tr>
 			<td class="firstTd">회원번호</td>
-			<td class="secondTd">이름</td>
-			<td class="thirdTd">닉네임</td>
+			<td class="secondTd">닉네임</td>
+			<td class="thirdTd">회원등급</td>
 		</tr>
 		<tr>
 			<td>샘플1</td>
