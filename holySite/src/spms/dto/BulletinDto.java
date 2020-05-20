@@ -15,6 +15,17 @@ public class BulletinDto {
 	}
 
 
+
+	public BulletinDto(int no, String title, Date createdDate, MemberDto writer) {
+		super();
+		this.no = no;
+		this.title = title;
+		this.createdDate = createdDate;
+		this.writer = writer;
+	}
+
+
+
 	public BulletinDto(int no, String title, String text, Date createdDate, MemberDto writer) {
 		super();
 		this.no = no;
