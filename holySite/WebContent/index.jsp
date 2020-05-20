@@ -18,7 +18,7 @@
 	
 		<p>게시판 홈페이지입니다.</p>
 		<input type="button" onclick="pageMoveLogin();" value="로그인">
-		<input type="button" value="회원가입">
+		<input type="button" onclick="pageMoveMemberAdd();" value="회원가입">
 	
 		<jsp:include page="/Tail.jsp"/>
 	</div>
@@ -28,6 +28,10 @@
 <script type="text/javascript">
 	function pageMoveLogin() {
 		location.href = '<%=request.getContextPath()%>/auth/login';
+	}
+	
+	function pageMoveMemberAdd(){
+		location.href = '<%=request.getContextPath()%>/member/add';
 	}
 </script>
 
