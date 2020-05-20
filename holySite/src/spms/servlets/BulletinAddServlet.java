@@ -37,7 +37,7 @@ public class BulletinAddServlet extends HttpServlet{
 		String title = req.getParameter("title");
 		String text = req.getParameter("text");
 		MemberDao memberDao = new MemberDao();
-		int writerNo = Integer.parseInt(req.getParameter("writer"));
+		int writerNo = Integer.parseInt(req.getParameter("writerNo"));
 		MemberDto writer = null;
 		
 		try {
