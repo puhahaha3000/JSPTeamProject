@@ -1,27 +1,25 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
 
 <meta charset="UTF-8">
-<title>Insert title here</title>
-<style type="text/css">
-	table{
-		border: 1px solid black;
-		border-collapse: collapse;
-	}
-	
-	table, tr, td{
-		border: 1px solid black;
-	}
-</style>
+<title>게시판</title>
+
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/common.css" type="text/css">
+
 </head>
 
 <body>
-
-	<table>
+	
+	<div>
+	
+		<jsp:include page="/Header.jsp"/>
+		
+		
+		<table>
 		<tr>
 			<td>번호</td>
 			<td>제목</td>
@@ -36,10 +34,20 @@
 				<td>${bulletinDto.createdDate}</td>
 			</tr>
 		</c:forEach>
-	</table>
-	<form action="./add">
-	<button>글쓰기</button>
-	</form>
+		</table>
+		<form action="./add">
+		<button>글쓰기</button>
+		</form>
+		
+		
+		<jsp:include page="/Tail.jsp"/>
+		
+	</div>
+
 </body>
+
+<script type="text/javascript">
+	
+</script>
 
 </html>
