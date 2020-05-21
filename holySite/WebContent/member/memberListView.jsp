@@ -6,7 +6,7 @@
 <html>
 <head>
 
-<meta charset="UTF-8">
+<meta charset="UTF-8" >
 <title>회원 목록</title>
 <style type="text/css">	
 	td{ 
@@ -82,7 +82,6 @@
 		</table>
 	
 		<button class="bottomBtn" onclick="addFnc();">회원추가</button>
-		<button class="bottomBtn" onclick="moveAdminPage();">목록이동</button>
 	
 		<jsp:include page="/Tail.jsp"/>
 		
@@ -105,10 +104,6 @@
 			return false;
 		}	
 	}
-	function moveAdminPage() {
-		location.href="../adminPage.jsp"
-	}
-
 </script>
 
 </html>

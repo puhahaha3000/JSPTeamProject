@@ -23,8 +23,16 @@ public class MemberAddServlet extends HttpServlet{
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		
+		int result = 1;
+		req.setAttribute("result", result);
+		
+		MemberDto memberDto = new MemberDto();
+		req.setAttribute("memberDto", memberDto);
+		
 		// 337 1번 문제 입력화면 생성 코드 제거	
-		res.sendRedirect("../member/memberAddView.jsp");
+		RequestDispatcher dispatcher = 
+				req.getRequestDispatcher("../member/memberAddView.jsp");
+		dispatcher.forward(req, res);
 	}
 	
 	@Override
@@ -54,20 +62,27 @@ public class MemberAddServlet extends HttpServlet{
 		memberDao.setConnection(conn);
 		
 		// 0이면 못 넣음 0이외에는 성공
-		int result;
+		int result = 0;
 		try {
 			result = memberDao.memberInsert(memberDto);
 			
 			if(result == 0){
 				System.out.println("회원가입 실패");
+				
+			}else {
+				res.sendRedirect("./list");				
 			}
 			
-			res.sendRedirect("./list");
+			
 		} catch (Exception e) {
 			req.setAttribute("error", e);
+			
+			req.setAttribute("result", result);
+			req.setAttribute("memberDto", memberDto);
 			RequestDispatcher dispatcher = 
-					req.getRequestDispatcher("/Error.jsp");
+					req.getRequestDispatcher("../member/memberAddView.jsp");
 			dispatcher.forward(req, res);
+			
 		}
 		
 	}

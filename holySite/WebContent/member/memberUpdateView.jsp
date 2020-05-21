@@ -7,7 +7,7 @@
 <html>
 <head>
 
-<meta charset="UTF-8">
+<meta charset="UTF-8" >
 <title>회원 수정</title>
 
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/common.css" type="text/css">
