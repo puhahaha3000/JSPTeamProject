@@ -42,15 +42,17 @@
 			</tr>
 			<c:forEach var="noticeDto" items="${noticeList}">
 				<tr>
-					<td>${noticeDto.no }</td>
+					<td><a href='./update?no=${noticeDto.no}'>${noticeDto.no}</a></td>
 					<td>${noticeDto.title }</td>
 					<td>${noticeDto.writer.nickname }</td>
 					<td>${noticeDto.createdDate }</td>
+					
 				</tr>
 			</c:forEach>
 		</table>
 		
 		<button onclick="addTable();">추가</button>
+		
 		
 		
 	</div>
