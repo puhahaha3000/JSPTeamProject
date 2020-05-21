@@ -181,20 +181,22 @@ public class MemberDao {
 			rs = pstmt.executeQuery();
 
 
-			String name = "";
+			String nickname = "";
 			String email = "";
 			String pwd ="";
 			String grade ="";
 
 			if (rs.next()) {
-				name = rs.getString("NICKNAME");
+				nickname = rs.getString("NICKNAME");
 				email = rs.getString("EMAIL");
+				pwd = rs.getString("pwd");
+				grade = rs.getString("grade");
 				
 
 				memberDto = new MemberDto();
 
 				memberDto.setNo(no);
-				memberDto.setNickname(name);
+				memberDto.setNickname(nickname);
 				memberDto.setEmail(email);
 				memberDto.setPwd(pwd);
 				memberDto.setGrade(grade);
@@ -249,7 +251,8 @@ public class MemberDao {
 			pstmt.setString(2, memberDto.getNickname());
 			pstmt.setString(3, memberDto.getPwd());
 			pstmt.setString(4, memberDto.getGrade());
-
+			pstmt.setInt(5, memberDto.getNo());
+			
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

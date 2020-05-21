@@ -10,7 +10,7 @@
 <title>회원 수정</title>
 <script type="text/javascript">
 	function pageMoveListFnc(){
-		location.href = "./list";
+		location.href = './list';
 	}
 	
 	function deleteFnc(no) {
@@ -20,6 +20,9 @@
 		}else{
 			return false;
 		}	
+	}
+	function updateFnc(no) {
+		location.href = './update?no='+no;
 	}
 </script>
 </head>
@@ -45,9 +48,9 @@
 				<td><input type="text" value="${memberDto.grade}" name='grade'></td>		
 			</tr>
 		</table>
-		
+		<input type="hidden" value="${memberDto.no}" name='no'>		
 		<input type="submit" value="수정">
-		<input type="button" value="삭제" onclick="updateFnc(${memberDto.no})">
+		<input type="button" value="삭제" onclick="deleteFnc(${memberDto.no})">
 		<input type="button" value="취소" onclick="pageMoveListFnc()">
 	</form>
 	<jsp:include page="/Tail.jsp" />

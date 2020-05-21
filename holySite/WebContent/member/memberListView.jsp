@@ -26,8 +26,8 @@
 	function addFnc() {
 		location.href='./add';
 	}
-	function updateFnc() {
-		location.href='./update';
+	function updateFnc(no) {
+		location.href='./update?no='+no;
 	}
 	function deleteFnc(no) {
 		const result = confirm('정말 탈퇴하시겠습니까?')
