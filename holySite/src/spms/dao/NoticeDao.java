@@ -26,7 +26,7 @@ public class NoticeDao {
 
 		String sql = "SELECT NO, TITLE, WRITER, CRE_DATE";
 		sql += " FROM NOTICE";
-		sql += " ORDER BY NO ASC";
+		sql += " ORDER BY NO DESC";
 
 		try {
 			pstmt = conn.prepareStatement(sql);

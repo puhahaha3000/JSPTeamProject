@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -23,11 +24,13 @@
 		작성자:<input type="text"  name="writer" value="${noticeDto.writer.nickname}"><br>
 		제목:<input type="text"  name="title" value="${noticeDto.title}"><br>
 		내용:<input type="text"  name="text" value="${noticeDto.text}" style="width: 500px; height: 500px;"><br>
+		<c:if test="${member.grade eq '1'}">
+		
 		<input type="submit" value="수정">
 		<a href="./delete?no=${noticeDto.no}">
 			<input type="button" value="삭제">
 		</a>
-		
+		</c:if>
 			<input type="reset" value="취소" onclick="pageMoveListFnc();">
 		
 		
