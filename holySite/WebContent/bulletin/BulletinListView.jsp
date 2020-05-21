@@ -36,10 +36,14 @@
 		</c:forEach>
 		</table>
 		<form action="./add">
-		<button>글쓰기</button>
+			<button>글쓰기</button>
 		</form>
+		<br>
 		
-		
+		<form action="../notice/list">
+			<button>공지사항</button>
+		</form>
+
 		<jsp:include page="/Tail.jsp"/>
 		
 	</div>

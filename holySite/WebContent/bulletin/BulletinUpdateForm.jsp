@@ -25,13 +25,20 @@
 	<div>
 		<jsp:include page="/Header.jsp"/>
       <form action="./update" method="post">
-      <input type="text" name="writer" value="${bulletinDto.writer.nickname}" ><br>
-      <input type="text" name="title" value="${bulletinDto.title}" ><br>
-      <input type="text" name="text" value="${bulletinDto.text}" style="width: 500px; height: 500px;"><br>
+      <c:if test="${member.grade eq '1' || bulletinDto.writer.nickname eq member.nickname}">
+      	<input type="text" name="writer" value="${bulletinDto.writer.nickname}" ><br>
+      	<input type="text" name="title" value="${bulletinDto.title}" ><br>
+      	<textarea name="text" style="width: 500px; height: 500px;">${bulletinDto.text}</textarea><br>
+      </c:if>
+      
+      <c:if test="${member.grade != '1' && bulletinDto.writer.nickname != member.nickname}">
+      	<input type="text" name="writer" value="${bulletinDto.writer.nickname}" readonly="readonly"><br>
+      	<input type="text" name="title" value="${bulletinDto.title}" readonly="readonly"><br>
+      	<textarea name="text" style="width: 500px; height: 500px;" readonly="readonly">${bulletinDto.text}</textarea><br>
+      </c:if>
+      
       <c:if test="${member.grade eq '1' || bulletinDto.writer.nickname eq member.nickname}">
       	<input type="submit" value="수정">
-      </c:if>
-      <c:if test="${member.grade eq '1'|| bulletinDto.writer.nickname eq member.nickname}">
       	<input type="button" value="삭제" onclick='pageMoveDeleteFnc(${bulletinDto.no});'>
       </c:if>
       <input type="button" value="취소" onClick='pageMoveListFnc();'>

@@ -39,7 +39,7 @@ public class BulletinUpdateServlet extends HttpServlet {
 			BulletinDao bulletinDao = new BulletinDao();
 			bulletinDao.setConnection(conn);
 			
-			BulletinDto bulletinDto = BulletinDao.bulletinSelectOne(no);
+			BulletinDto bulletinDto = bulletinDao.bulletinSelectOne(no);
 			
 			req.setAttribute("bulletinDto", bulletinDto);
 			rd = req.getRequestDispatcher("./BulletinUpdateForm.jsp");
