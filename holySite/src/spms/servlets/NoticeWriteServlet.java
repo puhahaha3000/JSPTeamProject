@@ -17,7 +17,7 @@ import spms.dao.NoticeDao;
 import spms.dto.MemberDto;
 import spms.dto.NoticeDto;
 
-@WebServlet(value="/notice/write")
+@WebServlet(value="/notice/add")
 public class NoticeWriteServlet extends HttpServlet{
 
 	@Override
@@ -50,11 +50,24 @@ public class NoticeWriteServlet extends HttpServlet{
 		
 		Connection conn = null;
 		
+		ServletContext sc = this.getServletContext();
+		conn = (Connection) sc.getAttribute("conn");
+		
 		String title = req.getParameter("title");
 		String text = req.getParameter("text");
+		int writerNo = Integer.parseInt(req.getParameter("writerNo"));
+		
+		MemberDao memberDao = new MemberDao();
+		memberDao.setConnection(conn);
 		
 		MemberDto writer = new MemberDto();
-		writer.setNo(Integer.parseInt(req.getParameter("writer")));
+		
+		try {
+			writer = memberDao.memberSelectOne(writerNo);
+		} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		
 		NoticeDto noticeDto = new NoticeDto();
 		
@@ -62,8 +75,6 @@ public class NoticeWriteServlet extends HttpServlet{
 		noticeDto.setTitle(title);
 		noticeDto.setWriter(writer);
 		
-		ServletContext sc = this.getServletContext();
-		conn = (Connection) sc.getAttribute("conn");
 		
 		NoticeDao noticeDao = new NoticeDao();
 		noticeDao.setConnection(conn);

@@ -6,12 +6,17 @@
 
 <meta charset="UTF-8">
 <title>Insert title here</title>
-
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/common.css" type="text/css">
 </head>
-
+<script type="text/javascript">
+	function pageMoveListFnc(){
+		location.href = "./list";
+	}
+</script>
 <body>
 
 	<div>
+		<jsp:include page="/Header.jsp"/>
 		<h3>글수정</h3>
 		<form action="./update" method="post">
 		번호:<input type="text" name="no" value="${noticeDto.no}"><br>
@@ -22,11 +27,12 @@
 		<a href="./delete?no=${noticeDto.no}">
 			<input type="button" value="삭제">
 		</a>
-		<a href="./list">
-			<input type="reset" value="취소">
-		</a>
+		
+			<input type="reset" value="취소" onclick="pageMoveListFnc();">
+		
 		
 		</form>
+		<jsp:include page="/Tail.jsp"/>
 	</div>
 
 </body>

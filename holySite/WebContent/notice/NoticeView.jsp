@@ -9,17 +9,10 @@
 <head>
 
 
-
 <meta charset="UTF-8">
 <title>Insert title here</title>
 
-<style type="text/css">
-	table,td,tr{
-		border: 1px solid black;
-		border-collapse:collapse;
-	}
-</style>
-
+<link rel="stylesheet" href="../css/common.css" type="text/css">
 
 
 </head>
@@ -32,7 +25,8 @@
 <body>
 
 	<div>
-		
+		<jsp:include page="/Header.jsp"/>
+		<div style='margin-left: 50px; margin-top:20px;'>
 		<table id='tb'>
 			<tr>
 				<td>글번호</td>
@@ -51,9 +45,12 @@
 			</c:forEach>
 		</table>
 		
-		<button onclick="addTable();">추가</button>
+		<c:if test="${member.grade eq '1'}">
+			<button onclick="addTable();">추가</button>
+		</c:if>
 		
-		
+		</div>
+		<jsp:include page="/Tail.jsp"/>
 		
 	</div>
 	
@@ -63,7 +60,7 @@
 <script type="text/javascript">
 	
 	function addTable() {
-		location.href="./write"
+		location.href="./add"
 
 	}
 	
