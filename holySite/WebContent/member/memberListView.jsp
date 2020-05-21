@@ -14,14 +14,68 @@
 	}
 	td{ 
 		width : 100px;
+		height : 50px;
 		text-align: center;
 	}
 	button {
 		width : 80px;
 		margin-right: 20px;
 		margin-top : 50px;
-}
+	}
+	.listBtn {
+		margin: auto;
+	}
+	.firstTr{
+		background-color: #4782A4;
+		font-size: 18px;
+		font-weight: bold;
+		color: #FFFFFF;
+	}
 </style>
+
+
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/common.css" type="text/css">
+
+</head>
+
+<body>
+
+	<div>
+	
+		<jsp:include page="/Header.jsp"/>
+		
+		
+		<h1>회원목록</h1>
+	
+		<table>
+			<tr>
+				<td class="firstTr">회원번호</td>
+				<td class="firstTr">닉네임</td>
+				<td class="firstTr">이메일</td>
+				<td class="firstTr">수정</td>
+				<td class="firstTr">삭제</td>
+			</tr>
+			<c:forEach var="memberDto" items="${memberList}">
+				<tr>
+					<td>${memberDto.no}</td>
+					<td>${memberDto.nickname}</td>
+					<td>${memberDto.email}</td>
+					<td><button class ="listBtn" onclick="updateFnc(${memberDto.no})">수정</button></td>
+					<td><button class ="listBtn" onclick="deleteFnc(${memberDto.no});">삭제</button></td>
+				</tr>	
+			</c:forEach>		
+		</table>
+	
+	<button onclick="addFnc()">추가</button>
+	
+		
+		
+		<jsp:include page="/Tail.jsp"/>
+		
+	</div>
+
+</body>
+
 <script type="text/javascript">
 	function addFnc() {
 		location.href='./add';
@@ -40,35 +94,5 @@
 	}
 
 </script>
-</head>
-
-<body>
-<jsp:include page="/Header.jsp" />
-	<h1>회원목록</h1>
-	
-	<table>
-		<tr>
-			<td class="firstTd">회원번호</td>
-			<td class="secondTd">닉네임</td>
-			<td class="thirdTd">이메일</td>
-			<td class="forthTd">수정</td>
-			<td class="fifthTd">삭제</td>
-		</tr>
-		<c:forEach var="memberDto" items="${memberList}">
-			<tr>
-				<td>${memberDto.no}</td>
-				<td>${memberDto.nickname}</td>
-				<td>${memberDto.email}</td>
-				<td><button onclick="updateFnc(${memberDto.no})">수정</button></td>
-				<td><button onclick="deleteFnc(${memberDto.no});">삭제</button></td>
-			</tr>	
-		</c:forEach>		
-	</table>
-	
-	<button onclick="addFnc()">추가</button>
-	
-
-	<jsp:include page="/Tail.jsp" />
-</body>
 
 </html>
