@@ -65,3 +65,21 @@ button:hover {
 	border-color: #59b1eb;
 	color: #59b1eb;
 }
+
+.button{
+	width: 75px;
+	height: 25px;
+	background-color: #4782A4;
+	border: 2px solid #4782A4;
+	color: #fff;
+}
+
+.button:hover {
+	background-color: #fff;
+	border-color: #59b1eb;
+	color: #59b1eb;
+}
+
+a{
+	text-decoration: none;
+}

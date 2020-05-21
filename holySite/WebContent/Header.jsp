@@ -10,7 +10,7 @@
 		<c:if test="${member.email ne null}">
 			<span style="float:right;">
 				${member.nickname}
-				<a href="<%=request.getContextPath()%>/auth/logout">로그아웃</a>
+				<a class="button" href="<%=request.getContextPath()%>/auth/logout">로그아웃</a>
 			</span>
 		</c:if>
 	</div>

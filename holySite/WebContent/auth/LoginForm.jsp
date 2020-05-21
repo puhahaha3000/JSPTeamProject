@@ -18,7 +18,7 @@
 			이메일: 	<input type="text" name="email"><br>
 			암호: 	<input type="password" name="password"><br>
 			<input type="submit" value="로그인">
-			<input type="button" value="회원가입">		
+			<input type="button" onclick="pageMoveAddMember();" value="회원가입">		
 		</form>
 		
 		<jsp:include page="/Tail.jsp"/>
