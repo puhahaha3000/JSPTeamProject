@@ -60,7 +60,7 @@ button {
 	color: #fff;
 }
 
-button {
+button:hover {
 	background-color: #fff;
 	border-color: #59b1eb;
 	color: #59b1eb;
