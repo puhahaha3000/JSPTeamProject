@@ -13,8 +13,8 @@ div:first-child {
 input[type="button"]{
 	width: 75px;
 	height: 25px;
-	background-color: #555;
-	border: 2px solid #333;
+	background-color: #4782A4;
+	border: 2px solid #4782A4;
 	color: #fff;
 }
 
@@ -27,8 +27,8 @@ input[type="button"]:hover {
 input[type="submit"]{
 	width: 75px;
 	height: 25px;
-	background-color: #555;
-	border: 2px solid #333;
+	background-color: #4782A4;
+	border: 2px solid #4782A4;
 	color: #fff;
 }
 
@@ -37,15 +37,30 @@ input[type="submit"]:hover {
 	border-color: #59b1eb;
 	color: #59b1eb;
 }
+
 input[type="reset"]{
 	width: 75px;
 	height: 25px;
-	background-color: #555;
-	border: 2px solid #333;
+	background-color: #4782A4;
+	border: 2px solid #4782A4;
 	color: #fff;
 }
 
 input[type="reset"]:hover {
+	background-color: #fff;
+	border-color: #59b1eb;
+	color: #59b1eb;
+}
+
+button {
+	width: 75px;
+	height: 25px;
+	background-color: #4782A4;
+	border: 2px solid #4782A4;
+	color: #fff;
+}
+
+button {
 	background-color: #fff;
 	border-color: #59b1eb;
 	color: #59b1eb;

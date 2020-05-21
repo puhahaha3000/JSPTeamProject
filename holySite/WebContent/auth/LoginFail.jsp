@@ -7,12 +7,12 @@
 
 <title>로그인 실패</title>
 
-<link rel="stylesheet" href="../css/common.css" type="text/css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/common.css" type="text/css">
 
 </head>
 
 <body>
-	<div id="page">
+	<div>
 		<jsp:include page="../Header.jsp"/>
 
 		<p>
