@@ -44,6 +44,7 @@ public class MemberDao {
 				email = rs.getString("EMAIL");
 				grade = rs.getString("GRADE");
 				
+				
 				MemberDto memberDto = 
 					new MemberDto(no, email, "", nickname, grade);
 
