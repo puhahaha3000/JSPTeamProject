@@ -31,20 +31,14 @@
 		<c:forEach var="bulletinDto" items="${bulletinList}">
 			<tr>
 				<td>${bulletinDto.no}</td>
-				<td>${bulletinDto.title}</td>
+				<td><a href="<%=request.getContextPath()%>/bulletin/update">${bulletinDto.title}</a></td>
 				<td>${bulletinDto.writer.nickname}</td>
 				<td>${bulletinDto.createdDate}</td>
 			</tr>
 		</c:forEach>
 	</table>
 	<form action="./add">
-	<button>추가</button>
-	</form>
-	<form action="./update">
-	<button>수정</button>
-	</form>
-	<form action="./delete">
-	<button>삭제</button>
+	<button>글쓰기</button>
 	</form>
 </body>
 

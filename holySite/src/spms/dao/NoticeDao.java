@@ -100,7 +100,7 @@ public class NoticeDao {
 			
 			String sql = "INSERT INTO NOTICE" 
 					+ " (NO, TITLE, TEXT, CRE_DATE,WRITER)"
-					+ " VALUES(MEMBER_MNO_SEQ.NEXTVAL"
+					+ " VALUES(NOTICE_NO_SEQ.NEXTVAL,"
 					+ " ?, ?, SYSDATE, ?)";
 			
 
