@@ -12,15 +12,25 @@
 <body>
 	<div>
 		<jsp:include page="/Header.jsp"/>
-		
-		<h2>로그인</h2>
 		<form action="./login" method="post">
-			이메일: 	<input type="text" name="email"><br>
-			암호: 	<input type="password" name="password"><br>
-			<input type="submit" value="로그인">
-			<input type="button" onclick="pageMoveAddMember();" value="회원가입">		
+			<h2>로그인</h2>
+			<table>
+				<tr>
+					<td>이메일</td>
+					<td><input type="text" name="email"></td>
+				</tr>
+				<tr>
+					<td>암호</td>
+					<td><input type="password" name="password"></td>
+				</tr>
+				<tr>
+					<td style="text-align:center;" colspan="2">
+						<input type="submit" value="로그인">
+						<input type="button" onclick="pageMoveAddMember();" value="회원가입">		
+					</td>
+				</tr>
+			</table>
 		</form>
-		
 		<jsp:include page="/Tail.jsp"/>
 	</div>
 </body>

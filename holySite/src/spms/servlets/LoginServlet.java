@@ -22,11 +22,10 @@ public class LoginServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-
+		
 		RequestDispatcher rd = 
 				req.getRequestDispatcher("./LoginForm.jsp");
 		rd.forward(req, res);
-
 	}
 
 	@Override
@@ -63,7 +62,7 @@ public class LoginServlet extends HttpServlet {
 				if(memberDto.getGrade().equals("1")) {
 					res.sendRedirect("../adminPage.jsp");
 				} else {
-					res.sendRedirect("../member/list");
+					res.sendRedirect("../bulletin/list");
 				}
 			}
 			
