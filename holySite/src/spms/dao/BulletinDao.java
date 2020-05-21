@@ -8,6 +8,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import org.apache.jasper.tagplugins.jstl.core.If;
+
 import spms.dto.BulletinDto;
 import spms.dto.MemberDto;
 
@@ -89,7 +91,6 @@ public class BulletinDao {
 		int result = 0;
 		PreparedStatement pstmt = null;
 		
-		int no = 0;
 		MemberDao memberDao = new MemberDao();
 		memberDao.setConnection(conn);
 		try {
@@ -129,7 +130,9 @@ public class BulletinDao {
 	}
 
 	// 회원삭제
+	
 	public int bulletinDelete(int no) throws SQLException {
+		
 		int result = 0;
 
 		PreparedStatement pstmt = null;
@@ -246,7 +249,7 @@ public class BulletinDao {
 		PreparedStatement pstmt = null;
 
 		String sql = "";
-		sql = "UPDATE bulletin";
+		sql = "UPDATE BULLETIN";
 		sql += " SET TITLE=?, TEXT=?";
 		sql += " WHERE NO =?";
 
@@ -256,7 +259,7 @@ public class BulletinDao {
 			pstmt.setString(1, bulletinDto.getTitle());
 			pstmt.setString(2, bulletinDto.getText());
 			pstmt.setInt(3, bulletinDto.getNo());
-
+			
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -273,6 +276,7 @@ public class BulletinDao {
 			}
 
 		} // finally 종료
+		System.out.println(result);
 		return result;
 	}
 
