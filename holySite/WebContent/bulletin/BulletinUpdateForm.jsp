@@ -6,8 +6,8 @@
 <head>
 
 <meta charset="UTF-8">
-<title>Insert title here</title>
-
+<title>수정</title>
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/common.css" type="text/css">
 </head>
 <script type="text/javascript">
 	function pageMoveDeleteFnc(no){
@@ -23,6 +23,7 @@
 <body>
 	
 	<div>
+		<jsp:include page="/Header.jsp"/>
       <form action="./update" method="post">
       <input type="text" name="writer" value="${bulletinDto.writer.nickname}" ><br>
       <input type="text" name="title" value="${bulletinDto.title}" ><br>
@@ -36,6 +37,7 @@
       <input type="button" value="취소" onClick='pageMoveListFnc();'>
       <input type="hidden" name="no" value="${bulletinDto.no}">
       </form>
+      <jsp:include page="/Tail.jsp"/>
    </div>
 	
 

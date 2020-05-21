@@ -5,8 +5,9 @@
 <head>
 
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>글쓰기</title>
 
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/common.css" type="text/css">
 </head>
 <script type="text/javascript">
 	function pageMoveListFnc(){
@@ -16,6 +17,8 @@
 <body>
 
 	<div>
+		<jsp:include page="/Header.jsp"/>
+	
       <form action="./add" method="post">
 		작성자 : <input type="text" name="writer" value="${member.nickname}" readonly="readonly"><br><br>
 		제목 : <input type="text" name="title"><br><br>		           
@@ -26,6 +29,7 @@
        <input type="button" value="목록" onClick='pageMoveListFnc();'>
       
       </form>
+      <jsp:include page="/Tail.jsp"/>
    </div>
 
 </body>
