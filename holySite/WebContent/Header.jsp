@@ -40,6 +40,8 @@
 				<span style="float:right;">
 					GUEST님 안녕하세요.&nbsp;&nbsp;&nbsp;&nbsp;
 					<a href="<%=request.getContextPath()%>/member/add">회원가입</a>
+					&nbsp;
+					<a href="<%=request.getContextPath()%>/auth/login">로그인</a>
 				</span>
 			</c:if>
 		</div>
