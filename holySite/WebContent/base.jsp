@@ -17,10 +17,10 @@
 	
 		<jsp:include page="/Header.jsp"/>
 		
-		<p>게시판 홈페이지입니다.</p>
-		<input id="commonBtn" type="button" onclick="pageMoveLogin();" value="로그인">
-		<input class="commonBtn" type="button" onclick="pageMoveMemberAdd();" value="회원가입">
-	
+		
+		내용
+		
+		
 		<jsp:include page="/Tail.jsp"/>
 		
 	</div>
@@ -28,13 +28,7 @@
 </body>
 
 <script type="text/javascript">
-	function pageMoveLogin() {
-		location.href = '<%=request.getContextPath()%>/auth/login';
-	}
 	
-	function pageMoveMemberAdd(){
-		location.href = '<%=request.getContextPath()%>/member/add';
-	}
 </script>
 
 </html>
