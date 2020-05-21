@@ -17,7 +17,7 @@
 	
 		<jsp:include page="/Header.jsp"/>
 		
-		<p>게시판 홈페이지입니다.</p>
+		<img style="height:500px;"src="./img/board.png"/>
 		<input id="commonBtn" type="button" onclick="pageMoveLogin();" value="로그인">
 		<input class="commonBtn" type="button" onclick="pageMoveMemberAdd();" value="회원가입">
 	

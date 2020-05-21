@@ -3,7 +3,7 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 	<div >
-		<img src="./img/logo.png">
+		<img src="<%=request.getContextPath()%>/img/logo.png">
 		<div style="background-color:#4782A4; color:#ffffff; 
 		background: linear-gradient(to left, #FFFFFF, #4782A4);
 		height:20px; padding: 5px; font-weight: bold"></div>
