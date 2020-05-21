@@ -39,8 +39,8 @@ public class NoticeListServlet extends HttpServlet{
 			
 			req.setAttribute("noticeList", noticeList);
 
-			res.setContentType("text/html");
-			res.setCharacterEncoding("UTF-8");
+//			res.setContentType("text/html");
+//			res.setCharacterEncoding("UTF-8");
 			
 			//jsp로 출력을 위임한다
 			RequestDispatcher dispatcher = 

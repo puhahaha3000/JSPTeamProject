@@ -21,7 +21,7 @@
 		<jsp:include page="/Header.jsp"/>
 		<div style="margin-left: 50px; margin-top: 20px;">
 		<h3>글쓰기</h3>
-		<form action="./write" method="post">
+		<form action="./add" method="post">
 		작성자:<input type="text"  name="writer" value="${member.nickname }"><br>
 		제목:<input type="text"  name="title"><br>
 		내용:<input type="text"  name="text" style="width: 500px; height: 500px;"><br>
