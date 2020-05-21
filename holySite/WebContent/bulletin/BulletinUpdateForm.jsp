@@ -26,7 +26,7 @@
 		<jsp:include page="/Header.jsp"/>
       <form action="./update" method="post">
       <c:if test="${member.grade eq '1' || bulletinDto.writer.nickname eq member.nickname}">
-      	<input type="text" name="writer" value="${bulletinDto.writer.nickname}" ><br>
+      	<input type="text" name="writer" value="${bulletinDto.writer.nickname}" readonly="readonly"><br>
       	<input type="text" name="title" value="${bulletinDto.title}" ><br>
       	<textarea name="text" style="width: 500px; height: 500px;">${bulletinDto.text}</textarea><br>
       </c:if>
