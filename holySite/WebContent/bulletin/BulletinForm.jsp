@@ -22,7 +22,7 @@
       <form action="./add" method="post">
 		작성자 : <input type="text" name="writer" value="${member.nickname}" readonly="readonly"><br><br>
 		제목 : <input type="text" name="title"><br><br>		           
-		내용 : <input type="text" name="text" style="width: 500px; height: 500px;"><br>
+		내용 : <textarea name="text" style="width: 500px; height: 500px;"></textarea><br>
 		<input type="hidden" name="writerNo" value="${member.no}">
       <input type="submit" value="추가">
       <input type="reset" value="취소">

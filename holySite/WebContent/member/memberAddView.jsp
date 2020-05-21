@@ -41,7 +41,7 @@
 					</tr>
 					<tr>
 						<td>회원등급</td>		
-						<td><input type="text" value="0" name='grade'></td>		
+						<td>회원</td>		
 					</tr>
 				</table>
 		

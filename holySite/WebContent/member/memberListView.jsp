@@ -9,9 +9,6 @@
 <meta charset="UTF-8">
 <title>회원 목록</title>
 <style type="text/css">	
-	table, tr, td{
-		border: 1px solid black;
-	}
 	td{ 
 		width : 100px;
 		height : 50px;
@@ -30,6 +27,15 @@
 		font-size: 18px;
 		font-weight: bold;
 		color: #FFFFFF;
+	}
+	.bottomBtn {
+		margin-top: 30px; 
+		margin-bottom: 30px; 
+		margin-right: 10px;
+		width: 90px; 
+		height: 40px; 
+		font-weight: bold; 
+		font-size: 15px;"
 	}
 </style>
 
@@ -52,6 +58,7 @@
 				<td class="firstTr">회원번호</td>
 				<td class="firstTr">닉네임</td>
 				<td class="firstTr">이메일</td>
+				<td class="firstTr">회원등급</td>
 				<td class="firstTr">수정</td>
 				<td class="firstTr">삭제</td>
 			</tr>
@@ -60,16 +67,23 @@
 					<td>${memberDto.no}</td>
 					<td>${memberDto.nickname}</td>
 					<td>${memberDto.email}</td>
+					<td>
+						<c:choose>
+							<c:when test="${memberDto.grade eq '1'}"><a style="color:#FF3333">관리자</a></c:when>
+							<c:when test="${memberDto.grade eq '0'}">회원</c:when>
+							<c:otherwise>사장님</c:otherwise>
+						</c:choose>
+
+					</td>
 					<td><button class ="listBtn" onclick="updateFnc(${memberDto.no})">수정</button></td>
 					<td><button class ="listBtn" onclick="deleteFnc(${memberDto.no});">삭제</button></td>
 				</tr>	
 			</c:forEach>		
 		</table>
 	
-	<button onclick="addFnc()">추가</button>
+		<button class="bottomBtn" onclick="addFnc();">회원추가</button>
+		<button class="bottomBtn" onclick="moveAdminPage();">목록이동</button>
 	
-		
-		
 		<jsp:include page="/Tail.jsp"/>
 		
 	</div>
@@ -89,8 +103,10 @@
 			location.href='./delete?no='+no;
 		}else{
 			return false;
-		}
-		
+		}	
+	}
+	function moveAdminPage() {
+		location.href="../adminPage.jsp"
 	}
 
 </script>

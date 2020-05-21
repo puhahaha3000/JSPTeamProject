@@ -6,16 +6,13 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
-
-import org.apache.jasper.tagplugins.jstl.core.If;
 
 import spms.dto.BulletinDto;
 import spms.dto.MemberDto;
 
 public class BulletinDao {
 
-	private static Connection conn;
+	private Connection conn;
 	
 	public void setConnection(Connection conn) {
 		this.conn = conn;
@@ -27,7 +24,7 @@ public class BulletinDao {
 
 		String sql = "SELECT NO, TITLE, WRITER, CRE_DATE";
 		sql += " FROM BULLETIN";
-		sql += " ORDER BY NO ASC";
+		sql += " ORDER BY NO DESC";
 
 		try {
 			pstmt = conn.prepareStatement(sql);
@@ -169,7 +166,7 @@ public class BulletinDao {
 	}
 
 	// 회원 상세 정보 조회
-	public static BulletinDto bulletinSelectOne(int no) throws Exception {
+	public BulletinDto bulletinSelectOne(int no) throws Exception {
 
 		BulletinDto bulletinDto = null;
 
