@@ -17,8 +17,8 @@
 	<div>
 		<jsp:include page="/Header.jsp"/>
 		
-		<div class="nav" style="padding: 20px;">
-			<ul>
+		<div style="padding: 20px;">
+			<ul id="mainNav">
 				<c:if test="${member.grade eq '1'}">
 					<li>
 						<a href="<%=request.getContextPath()%>/member/list">회원목록</a>
