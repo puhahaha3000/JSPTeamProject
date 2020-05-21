@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <title>게시판</title>
 
-<link rel="stylesheet" href="./css/common.css" type="text/css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/common.css" type="text/css">
 
 </head>
 

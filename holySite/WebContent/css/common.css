@@ -23,3 +23,30 @@ input[type="button"]:hover {
 	border-color: #59b1eb;
 	color: #59b1eb;
 }
+
+input[type="submit"]{
+	width: 75px;
+	height: 25px;
+	background-color: #555;
+	border: 2px solid #333;
+	color: #fff;
+}
+
+input[type="submit"]:hover {
+	background-color: #fff;
+	border-color: #59b1eb;
+	color: #59b1eb;
+}
+input[type="reset"]{
+	width: 75px;
+	height: 25px;
+	background-color: #555;
+	border: 2px solid #333;
+	color: #fff;
+}
+
+input[type="reset"]:hover {
+	background-color: #fff;
+	border-color: #59b1eb;
+	color: #59b1eb;
+}
