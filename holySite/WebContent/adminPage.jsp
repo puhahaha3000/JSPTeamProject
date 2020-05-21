@@ -7,16 +7,29 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/common.css" type="text/css">
+
 </head>
 
 <body>
 
-	<input type="button" onclick="pageMoveMemberList();" value="회원목록">
-	<input type="button" onclick="pageMoveMemberAdd();" value="회원가입">
-	<input type="button" onclick="pageMoveBulletinList();" value="글목록">
-	<input type="button" onclick="pageMoveBulletinWrite();" value="글쓰기">
-	<input type="button" onclick="pageMoveNoticeList();" value="공지목록">
-	<input type="button" onclick="pageMoveNoticeWrite();" value="공지쓰기">
+	<div>
+		<jsp:include page="/Header.jsp"/>
+		
+		<div style="padding: 20px;">
+			<ul>
+				<li><input type="button" onclick="pageMoveMemberList();" value="회원목록"></li>
+				<li><input type="button" onclick="pageMoveMemberAdd();" value="회원가입"></li>
+				<li><input type="button" onclick="pageMoveBulletinList();" value="글목록"></li>
+				<li><input type="button" onclick="pageMoveBulletinWrite();" value="글쓰기"></li>
+				<li><input type="button" onclick="pageMoveNoticeList();" value="공지목록"></li>
+				<li><input type="button" onclick="pageMoveNoticeWrite();" value="공지쓰기"></li>
+			</ul>
+		</div>
+		
+		<jsp:include page="/Tail.jsp"/>
+	
+	</div>
 
 </body>
 

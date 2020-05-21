@@ -17,10 +17,10 @@
 	
 		<jsp:include page="/Header.jsp"/>
 		
-		<img style="height:500px;"src="./img/board.png"/>
-		<input id="commonBtn" type="button" onclick="pageMoveLogin();" value="로그인">
-		<input class="commonBtn" type="button" onclick="pageMoveMemberAdd();" value="회원가입">
-	
+		<img style="height:500px;" src="./img/board.png"/>
+		<input type="button" onclick="pageMoveLogin();" value="로그인">
+		<input type="button" onclick="pageMoveMemberAdd();" value="회원가입">
+		<input type="button" onclick="pageMoveNoticeList();" value="공지사항">
 		<jsp:include page="/Tail.jsp"/>
 		
 	</div>
@@ -34,6 +34,10 @@
 	
 	function pageMoveMemberAdd(){
 		location.href = '<%=request.getContextPath()%>/member/add';
+	}
+	
+	function pageMoveNoticeList(){
+		location.href = '<%=request.getContextPath()%>/notice/list';
 	}
 </script>
 
