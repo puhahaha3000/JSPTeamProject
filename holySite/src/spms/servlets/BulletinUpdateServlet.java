@@ -24,8 +24,10 @@ public class BulletinUpdateServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse res)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-
+		ServletContext sc = this.getServletContext();
 		Connection conn = null;
+		
+		conn = (Connection) sc.getAttribute("conn");
 		RequestDispatcher rd = null;
 
 		String mNo = "";
@@ -34,13 +36,6 @@ public class BulletinUpdateServlet extends HttpServlet {
 			mNo = req.getParameter("no");
 			int no = Integer.parseInt(mNo);
 
-			ServletContext sc = this.getServletContext();
-
-			conn = (Connection) sc.getAttribute("conn");
-			
-//			MemberDao memberDao = new MemberDao();
-//			memberDao.setConnection(conn);
-			
 			BulletinDao bulletinDao = new BulletinDao();
 			bulletinDao.setConnection(conn);
 			
@@ -65,47 +60,29 @@ public class BulletinUpdateServlet extends HttpServlet {
 		HttpServletResponse res)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		BulletinDto bulletinDto = null;
+		ServletContext sc = this.getServletContext();
 		
 		Connection conn = null;
+		conn = (Connection) sc.getAttribute("conn");
 		
-		String mNo = "";
 		try {
-			
+			int no = Integer.parseInt(req.getParameter("no"));
 			String title = req.getParameter("title");
 			String text = req.getParameter("text");
-			int writerNo = Integer.parseInt(req.getParameter("writer"));
-			MemberDao memberDao = new MemberDao();
 			
-			MemberDto writer = null;
-			try {
-				writer = memberDao.memberSelectOne(writerNo);
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			BulletinDto bulletinDto= new BulletinDto();
 			
-			mNo = req.getParameter("no");
-			int no = Integer.parseInt(mNo);
-			
-			bulletinDto = new BulletinDto();
+			bulletinDto.setNo(no);
 			bulletinDto.setTitle(title);
 			bulletinDto.setText(text);
-			bulletinDto.setWriter(writer);
-			
-			ServletContext sc = this.getServletContext();
 
-			conn = (Connection) sc.getAttribute("conn");
-
-//			MemberDao memberDao = new MemberDao();
-//			memberDao.setConnection(conn);
 			BulletinDao bulletinDao = new BulletinDao();
 			bulletinDao.setConnection(conn);
 			
 			int result = bulletinDao.bulletinUpdate(bulletinDto);
 
 			if(result == 0){
-				System.out.println("회원 정보 조회가 실패하였습니다.");
+				System.out.println("회원 정보 수정이 실패하였습니다.");
 			}
 			
 			res.sendRedirect("./list");
