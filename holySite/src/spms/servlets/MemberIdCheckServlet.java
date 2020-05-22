@@ -23,10 +23,9 @@ public class MemberIdCheckServlet extends HttpServlet{
 	protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		
-	
 
 		RequestDispatcher dispatcher = 
-				req.getRequestDispatcher("./idCheck.jsp");
+				req.getRequestDispatcher("./idCheckView.jsp");
 		dispatcher.forward(req, res);
 	
 	}
@@ -58,15 +57,24 @@ public class MemberIdCheckServlet extends HttpServlet{
 			if(result ==0) {
 				System.out.println("회원정보 조회 실패띠");
 			}
-			res.sendRedirect("./checkid");
 			
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			req.setAttribute("cnt", result);
+			req.setAttribute("email", email);
+
+			res.setContentType("text/html");
+			res.setCharacterEncoding("UTF-8");
 			
+			//jsp로 출력을 위임한다
+			RequestDispatcher dispatcher = 
+					req.getRequestDispatcher("./idCheckView.jsp");
+			
+			dispatcher.include(req, res);
+		} catch (Exception e) {
 			req.setAttribute("error", e);
-			RequestDispatcher rd = req.getRequestDispatcher("/Error.jsp");
-			rd.forward(req, res);
+			RequestDispatcher dispatcher = 
+					req.getRequestDispatcher("/Error.jsp");
+			dispatcher.forward(req, res);
+			
 		}
 		
 		

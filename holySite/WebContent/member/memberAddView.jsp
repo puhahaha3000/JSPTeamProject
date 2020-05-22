@@ -36,11 +36,11 @@
 					</tr>
 					<tr>
 						<td>비밀번호</td>		
-						<td><input type="text" value="" name='pwd'></td>		
+						<td><input type="password" value="" name='pwd'></td>		
 					</tr>
 					<tr>
-						<td>회원등급</td>		
-						<td>회원</td>		
+						<td>비밀번호 확인</td>		
+						<td><input type="password" value="" name='pwdCheck'></td>		
 					</tr>
 				</table>
 				
@@ -71,6 +71,7 @@
 		var email = document.getElementsByName('email')[0];
 		var nickname = document.getElementsByName('nickname')[0];
 		var pwd = document.getElementsByName('pwd')[0];
+		var pwdCk = document.getElementsByName('pwdCheck')[0];
 		
 		if(email.value==""){
 			alert("이메일을 입력해주세요");
@@ -80,6 +81,9 @@
 			return false;
 		}else if(pwd.value==""){
 			alert("비밀번호를 입력해주세요");
+			return false;
+		}else if (pwd.value!=pwdCk.value) {
+			alert("비밀번호가 일치하지 않습니다");
 			return false;
 		}else {
 			formObj.submit();

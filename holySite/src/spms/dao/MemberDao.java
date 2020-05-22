@@ -353,7 +353,7 @@ public class MemberDao {
 
 		sql = "SELECT COUNT(email) cnt";
 		sql += " FROM member";
-		sql += " where email = '?';";
+		sql += " where email = ?";
 
 		try {
 			pstmt = conn.prepareStatement(sql);
