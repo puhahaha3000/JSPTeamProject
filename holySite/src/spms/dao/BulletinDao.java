@@ -6,28 +6,61 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import spms.dto.BulletinDto;
 import spms.dto.MemberDto;
+import spms.dto.NoticeDto;
 
 public class BulletinDao {
 
 	private Connection conn;
-	
+
 	public void setConnection(Connection conn) {
 		this.conn = conn;
 	}
+	public List<BulletinDto> selectList() throws Exception{
+		return this.selectList(0, 1);
+	}
 	
-	public ArrayList<BulletinDto> selectList() throws Exception {
+	public List<BulletinDto> selectList(int pageUnit, int pageNo) throws Exception {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
+		
+//		String sql = "SELECT * FROM "
+//				+ "(SELECT ROWNUM RN, NO, TITLE, WRITER, CRE_DATE FROM "
+//				+ "(SELECT * FROM BULLETIN ORDER BY NO DESC)) WHERE RN BETWEEN ? AND ?";
 
-		String sql = "SELECT NO, TITLE, WRITER, CRE_DATE";
+//
+//		String sql = "SELECT NO, TITLE, WRITER, CRE_DATE";
+//		sql += " FROM BULLETIN";
+//		sql += " ORDER BY NO DESC";
+		
+		int startNo = 0;
+		int endNo = 0;
+		String sql = "";
+		if(pageUnit != 0) {
+			sql += "select * from (";
+		}
+		sql += "SELECT ROWNUM rn, NO, TITLE, WRITER, CRE_DATE";
 		sql += " FROM BULLETIN";
 		sql += " ORDER BY NO DESC";
-
+		if(pageUnit != 0) {
+			sql += ") WHERE rn BETWEEN ? AND ?";
+			startNo = pageUnit * (pageNo - 1) + 1;
+			endNo = pageUnit * (pageNo);
+		}
+		
+		
 		try {
 			pstmt = conn.prepareStatement(sql);
+//			pstmt.setInt(1, startRow);
+//			pstmt.setInt(2, endRow);
+			
+			if(startNo != 0 && endNo != 0) {
+				pstmt.setInt(1, startNo);
+				pstmt.setInt(2, endNo);
+			}
 
 			rs = pstmt.executeQuery();
 
@@ -276,5 +309,33 @@ public class BulletinDao {
 		System.out.println(result);
 		return result;
 	}
+	public int getCount() throws SQLException  {
+		
+		int count = 0;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
 
+		String sql = "";
+		sql = "SELECT COUNT(*)";
+		sql += " FROM BULLETIN";
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()){
+				count = rs.getInt(1);
+			}
+
+			
+		}catch (SQLException e) {
+			// TODO: handle exception
+			throw e;
+		}finally {
+			if (pstmt != null) {
+				pstmt.close();
+			}
+		}
+		return count;
+	}
 }

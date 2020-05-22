@@ -16,6 +16,7 @@ import spms.dao.BulletinDao;
 import spms.dao.MemberDao;
 import spms.dto.BulletinDto;
 import spms.dto.MemberDto;
+import spms.dto.NoticeDto;
 
 @WebServlet(value="/bulletin/list")	
 public class BulletinListServlet extends HttpServlet {
@@ -33,10 +34,25 @@ public class BulletinListServlet extends HttpServlet {
 			bulletinDao.setConnection(conn);
 			
 			ArrayList<BulletinDto> bulletinList = new ArrayList<BulletinDto>();
+//			bulletinList = bulletinDao.selectList();
 			
-			bulletinList = bulletinDao.selectList();
-			// request에 회원 목록 데이터 보관한다
+			int pageNo = 0;
+			try {
+				pageNo = Integer.parseInt(request.getParameter("pageNo"));
+			} catch (Exception e) {
+				// TODO: handle exception
+				pageNo = 1;
+			}
+
+			int pageCnt = bulletinDao.getCount();
+			int pageUnit = 10;
+			pageCnt = pageCnt / pageUnit + 1;
+			
+			bulletinList = (ArrayList<BulletinDto>)bulletinDao.selectList(pageUnit, pageNo);
+
 			request.setAttribute("bulletinList", bulletinList);
+			request.setAttribute("pageCnt", pageCnt);
+			request.setAttribute("pageNo", pageNo);
 
 			response.setContentType("text/html");
 			response.setCharacterEncoding("UTF-8");

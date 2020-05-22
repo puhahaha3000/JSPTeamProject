@@ -26,15 +26,17 @@
 		<jsp:include page="/Header.jsp"/>
       <form action="./update" method="post">
       <c:if test="${member.grade eq '1' || bulletinDto.writer.nickname eq member.nickname}">
-      	<input type="text" name="writer" value="${bulletinDto.writer.nickname}" readonly="readonly"><br>
-      	<input type="text" name="title" value="${bulletinDto.title}" ><br>
-      	<textarea name="text" style="width: 500px; height: 500px;">${bulletinDto.text}</textarea><br>
+      	번호:<input type="text" name="no" value="${bulletinDto.no}" readonly="readonly"><br>
+      	작성자:<input type="text" name="writer" value="${bulletinDto.writer.nickname}" readonly="readonly"><br>
+      	제목:<input type="text" name="title" value="${bulletinDto.title}" ><br>
+      	<h3>내용:</h3><textarea name="text" style="width: 500px; height: 500px;  resize:none;">${bulletinDto.text}</textarea><br>
       </c:if>
       
       <c:if test="${member.grade != '1' && bulletinDto.writer.nickname != member.nickname}">
-      	<input type="text" name="writer" value="${bulletinDto.writer.nickname}" readonly="readonly"><br>
-      	<input type="text" name="title" value="${bulletinDto.title}" readonly="readonly"><br>
-      	<textarea name="text" style="width: 500px; height: 500px;" readonly="readonly">${bulletinDto.text}</textarea><br>
+      	번호:<input type="text" name="no" value="${bulletinDto.no}" readonly="readonly"><br>
+      	작성자:<input type="text" name="writer" value="${bulletinDto.writer.nickname}" readonly="readonly"><br>
+      	제목:<input type="text" name="title" value="${bulletinDto.title}" readonly="readonly"><br>
+      	<h3>내용:</h3><textarea name="text" style="width: 500px; height: 500px;  resize:none;" readonly="readonly">${bulletinDto.text}</textarea><br>
       </c:if>
       
       <c:if test="${member.grade eq '1' || bulletinDto.writer.nickname eq member.nickname}">
