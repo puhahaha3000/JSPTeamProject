@@ -67,6 +67,23 @@
 </body>
 
 <script type="text/javascript">
+	window.onload = function(){
+	var navObjArr = document.getElementsByClassName("pageBtn");
+	var locInt = <%=request.getAttribute("pageNo")%>;
+	var navObj = '';
+	
+	for (var i = 0; i < navObjArr.length; i++) {
+		if(navObjArr[i].value == locInt){
+			navObj = navObjArr[i];
+			break;
+		}
+	}
+	
+	if(navObj != ''){
+		navObj.style.backgroundColor = "#FFFFFF";
+		navObj.style.color = "#59b1eb";
+	}
+}
 	
 	function addTable() {
 		location.href="./add"
