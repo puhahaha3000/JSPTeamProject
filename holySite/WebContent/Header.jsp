@@ -52,11 +52,18 @@
 		var navObj = '';
 		var locStr = location.pathname;
 		
-		if (locStr == "/holySite/member/list") {
+		if (locStr == "/holySite/member/list" 
+			|| locStr == "/holySite/member/update" 
+			|| locStr == "/holySite/member/add") {
+			
 			navObj = document.getElementById("navMemberList");
-		} else if(locStr == "/holySite/bulletin/list"){
+		} else if(locStr == "/holySite/bulletin/list"
+		 	|| locStr == "/holySite/bulletin/update"){
+			
 			navObj = document.getElementById("navBulletinList");
-		} else if(locStr == "/holySite/notice/list"){
+		} else if(locStr == "/holySite/notice/list"
+			|| locStr == "/holySite/notice/update"){
+			
 			navObj = document.getElementById("navNoticeList");
 		}
 		
