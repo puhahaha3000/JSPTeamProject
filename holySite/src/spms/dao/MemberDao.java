@@ -342,4 +342,47 @@ public class MemberDao {
 		}
 		return null;
 	}
+
+	public int memberCheckId(MemberDto memberDto) throws SQLException {
+		// TODO Auto-generated method stub
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		String sql = "";
+
+		sql = "SELECT COUNT(email) cnt";
+		sql += " FROM member";
+		sql += " where email = '?';";
+
+		try {
+			pstmt = conn.prepareStatement(sql);
+
+			pstmt.setString(1, memberDto.getEmail());
+			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				return rs.getInt("cnt");
+			}
+			
+			return 0;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			throw e;
+		} finally {
+			try {
+				if (pstmt != null) {
+					pstmt.close();
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+		} // finally 종료
+
+	}
+	
 }

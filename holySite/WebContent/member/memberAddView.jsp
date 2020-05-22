@@ -11,17 +11,7 @@
 <title>회원 추가</title>
 
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/common.css" type="text/css">
-<script type="text/javascript">
-	<% MemberDto memberDto = (MemberDto)request.getAttribute("memberDto"); %>
-	<% int result = (Integer)request.getAttribute("result"); %>
-	window.onload = function(){
-		var resultVar = <%=result%>;
-		if(resultVar == 0 ){
-			alert("에러");
-		}
-	
-	}
-</script>
+
 </head>
 
 <body>
@@ -32,26 +22,28 @@
 		
 			<form id="loginForm" action="./add" method="post">
 				
-				<c:if test="${memberDto != null}">
 				<table>
 					<tr>
 						<td>아이디(이메일)</td>		
-						<td><input type="text" value="${memberDto.getEmail()}" name='email'></td>		
+						<td>
+							<input type="text" id="inputId" value="" name='email'>
+							<input type="button" value="중복확인" onclick="testFnc()">
+						</td>
 					</tr>
 					<tr>
 						<td>닉네임</td>		
-						<td><input type="text" value="${memberDto.getNickname()}" name='nickname'></td>		
+						<td><input type="text" value="" name='nickname'></td>		
 					</tr>
 					<tr>
 						<td>비밀번호</td>		
-						<td><input type="text" value="${memberDto.getPwd()}" name='pwd'></td>		
+						<td><input type="text" value="" name='pwd'></td>		
 					</tr>
 					<tr>
 						<td>회원등급</td>		
 						<td>회원</td>		
 					</tr>
 				</table>
-				</c:if>
+				
 				<input type="button" onclick="checkFnc()" value="가입하기">
 				<input type="reset" value="초기화">
 				<input type="button" value="취소" onclick="pageMoveListFnc()">
@@ -94,6 +86,20 @@
 		}
 		
 	}
+	
+	var openWin = '';
+
+	function testFnc()	{
+		
+		openWin = window.open("./idcheck",
+                "childForm", "width=570, height=350, resizable = no, scrollbars = no");  
+		
+		openWin.onload = function(){
+			openWin.document.getElementById("getText").value =  document.getElementById("inputId").value;
+		}
+
+	}
+	
 	
 </script>
 

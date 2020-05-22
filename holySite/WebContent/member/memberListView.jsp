@@ -9,25 +9,11 @@
 <meta charset="UTF-8" >
 <title>회원 목록</title>
 <style type="text/css">	
-	td{ 
-		width : 100px;
-		height : 50px;
-		text-align: center;
-	}
-	button {
-		width : 80px;
-		margin-right: 20px;
-		margin-top : 50px;
-	}
+
 	.listBtn {
 		margin: auto;
 	}
-	.firstTr{
-		background-color: #4782A4;
-		font-size: 18px;
-		font-weight: bold;
-		color: #FFFFFF;
-	}
+	
 	.bottomBtn {
 		margin-top: 30px; 
 		margin-bottom: 30px; 
@@ -55,12 +41,12 @@
 	
 		<table>
 			<tr>
-				<td class="firstTr">회원번호</td>
-				<td class="firstTr">닉네임</td>
-				<td class="firstTr">이메일</td>
-				<td class="firstTr">회원등급</td>
-				<td class="firstTr">수정</td>
-				<td class="firstTr">삭제</td>
+				<th>회원번호</th>
+				<th>닉네임</th>
+				<th>이메일</th>
+				<th>회원등급</th>
+				<th>수정</th>
+				<th>삭제</th>
 			</tr>
 			<c:forEach var="memberDto" items="${memberList}">
 				<tr>

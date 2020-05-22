@@ -10,6 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import spms.dao.MemberDao;
 import spms.dto.MemberDto;
@@ -23,11 +24,8 @@ public class MemberAddServlet extends HttpServlet{
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		
-		int result = 1;
-		req.setAttribute("result", result);
 		
-		MemberDto memberDto = new MemberDto();
-		req.setAttribute("memberDto", memberDto);
+		
 		
 		// 337 1번 문제 입력화면 생성 코드 제거	
 		RequestDispatcher dispatcher = 
@@ -70,17 +68,21 @@ public class MemberAddServlet extends HttpServlet{
 				System.out.println("회원가입 실패");
 				
 			}else {
-				res.sendRedirect("./list");				
+				HttpSession session = req.getSession();
+				MemberDto member = (MemberDto)session.getAttribute("member");
+				if(member == null) {
+					res.sendRedirect("../auth/login");				
+				} else if(member.getGrade().equals("1")) {
+					res.sendRedirect("./list");
+				}
 			}
 			
 			
 		} catch (Exception e) {
 			req.setAttribute("error", e);
 			
-			req.setAttribute("result", result);
-			req.setAttribute("memberDto", memberDto);
 			RequestDispatcher dispatcher = 
-					req.getRequestDispatcher("../member/memberAddView.jsp");
+					req.getRequestDispatcher("../Error.jsp");
 			dispatcher.forward(req, res);
 			
 		}
