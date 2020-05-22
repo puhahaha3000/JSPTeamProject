@@ -35,10 +35,28 @@ public class NoticeListServlet extends HttpServlet{
 			
 			ArrayList<NoticeDto> noticeList = null;
 			
-			noticeList = (ArrayList<NoticeDto>)noticeDao.selectList();
+			int pageNo = 0;
+			try {
+				pageNo = Integer.parseInt(req.getParameter("pageNo"));
+			} catch (Exception e) {
+				// TODO: handle exception
+				pageNo = 1;
+			}
+
+			int pageCnt = noticeDao.getCount();
+			int pageUnit = 10;
+			pageCnt = pageCnt / pageUnit + 1;
+			
+//			if(pageNo == 0) {
+//				noticeList = (ArrayList<NoticeDto>)noticeDao.selectList();
+//			} else {
+				noticeList = (ArrayList<NoticeDto>)noticeDao.selectList(pageUnit, pageNo);
+//			}
 			
 			req.setAttribute("noticeList", noticeList);
-
+			req.setAttribute("pageCnt", pageCnt);
+			req.setAttribute("pageNo", pageNo);
+			
 			res.setContentType("text/html");
 			res.setCharacterEncoding("UTF-8");
 			

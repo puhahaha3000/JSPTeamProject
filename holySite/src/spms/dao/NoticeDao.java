@@ -20,17 +20,37 @@ public class NoticeDao {
 		this.conn = conn;
 	}
 	
-	public List<NoticeDto> selectList() throws Exception {
+	public List<NoticeDto> selectList() throws Exception{
+		return this.selectList(0, 1);
+	}
+	
+	public List<NoticeDto> selectList(int pageUnit, int pageNo) throws Exception {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-
-		String sql = "SELECT NO, TITLE, WRITER, CRE_DATE";
+		int startNo = 0;
+		int endNo = 0;
+		String sql = "";
+		if(pageUnit != 0) {
+			sql += "select * from (";
+		}
+		sql += "SELECT ROWNUM rn, NO, TITLE, WRITER, CRE_DATE";
 		sql += " FROM NOTICE";
 		sql += " ORDER BY NO DESC";
-
+		if(pageUnit != 0) {
+			sql += ") WHERE rn BETWEEN ? AND ?";
+			startNo = pageUnit * (pageNo - 1) + 1;
+			endNo = pageUnit * (pageNo);
+		}
+		
+		
 		try {
 			pstmt = conn.prepareStatement(sql);
 
+			if(startNo != 0 && endNo != 0) {
+				pstmt.setInt(1, startNo);
+				pstmt.setInt(2, endNo);
+			}
+			
 			rs = pstmt.executeQuery();
 
 			List<NoticeDto> NoticeList = 
@@ -292,72 +312,38 @@ public class NoticeDao {
 		}
 		
 		// 사용자 존재 유무 없으면 null 리턴
-		public NoticeDto memberExist(String title, String text, int no) throws SQLException {
+		public int getCount() throws SQLException  {
 			
+			int count = 0;
 			PreparedStatement pstmt = null;
 			ResultSet rs = null;
-			
+
 			String sql = "";
-			
-			sql += "SELECT TITLE, TEXT, NO";
+			sql = "SELECT COUNT(*)";
 			sql += " FROM NOTICE";
-			sql += " WHERE TITLE = ?";
-			sql += " AND TEXT = ?";
-			sql += " AND NO = ?";
-			
-			
 			
 			try {
-				
 				pstmt = conn.prepareStatement(sql);
-				
-				int colIndex = 1;
-				
-				pstmt.setString(colIndex++, title);
-				pstmt.setString(colIndex++, text);
-				pstmt.setInt(colIndex, no);
-				
 				rs = pstmt.executeQuery();
 				
-				NoticeDto noticeDto = new NoticeDto();
-				
-				if (rs.next()) {
-					title = rs.getString("title");
-					text = rs.getString("text");
-					
-					noticeDto.setText(text);
-					noticeDto.setTitle(title);
-					
-					// 회원 정보 조회 확인
-					return noticeDto;
-				}
-				
-			} catch (SQLException e) {
-				e.printStackTrace();
-				throw e;
-			} finally {
-				try {
-					if (rs != null) {
-						rs.close();
-					}
-				} catch (SQLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+				if(rs.next()){
+					count = rs.getInt(1);
 				}
 
-				try {
-					if (pstmt != null) {
-						pstmt.close();
-					}
-				} catch (SQLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+				
+			}catch (SQLException e) {
+				// TODO: handle exception
+				throw e;
+			}finally {
+				if (pstmt != null) {
+					pstmt.close();
 				}
 			}
-			
-			// 회원이 조회가 안된 경우
-			return null;
+			return count;
 		}
+		
+
+
 
 		
 }

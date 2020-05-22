@@ -29,21 +29,27 @@
 		<div style='margin-left: 50px; margin-top:20px;'>
 		<table id='tb'>
 			<tr>
-				<td>글번호</td>
-				<td>제목</td>
-				<td>작성자</td>
-				<td>작성일</td>
+				<th>글번호</th>
+				<th>제목</th>
+				<th>작성자</th>
+				<th>작성일</th>
 			</tr>
 			<c:forEach var="noticeDto" items="${noticeList}">
 				<tr>
-					<td><a href='./update?no=${noticeDto.no}'>${noticeDto.no}</a></td>
-					<td>${noticeDto.title }</td>
+					<td>${noticeDto.no}</td>
+					<td><a href='./update?no=${noticeDto.no}'>${noticeDto.title }</a></td>
 					<td>${noticeDto.writer.nickname }</td>
 					<td>${noticeDto.createdDate }</td>
 					
 				</tr>
 			</c:forEach>
 		</table>
+		
+		<input type="button" value="&#8592;" onclick="pageMovePre(${pageNo})">
+		<c:forEach var="i" begin="1" end="${pageCnt}">
+			<input type="button" value="${i}" onclick="pageMove(${i})">
+		</c:forEach>
+		<input type="button" value="&#8594;" onclick="pageMoveNext(${pageNo}, ${pageCnt})">
 		
 		<c:if test="${member.grade eq '1'}">
 			<button onclick="addTable();">추가</button>
@@ -62,6 +68,27 @@
 	function addTable() {
 		location.href="./add"
 
+	}
+	
+	function pageMove(obj){
+		location.href="./list?pageNo=" + obj;
+	}
+	
+	function pageMovePre(obj){
+		obj--;
+		if(obj < 1){
+			obj = 1;
+		}else {
+			location.href="./list?pageNo=" + obj;
+		}
+	}
+
+	function pageMoveNext(obj, pageCnt){
+		obj++;
+		if(obj > pageCnt){
+			obj = pageCnt;
+		}
+		location.href="./list?pageNo=" + obj;
 	}
 	
 </script>
