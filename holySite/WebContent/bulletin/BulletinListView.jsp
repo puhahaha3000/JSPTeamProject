@@ -54,11 +54,7 @@
 		<form action="./add">
 			<button>글쓰기</button>
 		</form>
-		<br>
 		
-		<form action="../notice/list">
-			<button>공지사항</button>
-		</form>
 		</div>
 		<jsp:include page="/Tail.jsp"/>
 		
