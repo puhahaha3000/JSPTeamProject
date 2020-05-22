@@ -76,6 +76,11 @@ table.borderNone{
 	border: none;
 }
 
+input.pageBtn{
+	width: 30px;
+	height: 30px;
+}
+
 #mainNav li {
 	text-align: center;
 	float:left;
