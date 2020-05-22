@@ -23,8 +23,8 @@ div:first-child {
 }
 
 input[type="button"], input[type="submit"], 
-input[type="reset"], button{
-	width: 75px;
+input[type="reset"], button, a.button{
+	width: 90px;
 	height: 25px;
 	background-color: #4782A4;
 	border: 2px solid #4782A4;
@@ -33,7 +33,7 @@ input[type="reset"], button{
 }
 
 input[type="button"]:hover, input[type="submit"]:hover, 
-input[type="reset"]:hover, button:hover{
+input[type="reset"]:hover, button:hover, a.button:hover{
 	background-color: #FFFFFF;
 	border-color: #59b1eb;
 	color: #59b1eb;
@@ -48,20 +48,6 @@ a{
 
 a:hover{
 	color: red;
-}
-
-a.button{
-	width: 75px;
-	height: 25px;
-	background-color: #4782A4;
-	border: 2px solid #4782A4;
-	color: #FFFFFF;
-}
-
-a.button:hover {
-	background-color: #fff;
-	border-color: #59b1eb;
-	color: #59b1eb;
 }
 
 ul#mainNav {
