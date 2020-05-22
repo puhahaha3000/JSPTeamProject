@@ -45,7 +45,7 @@ public class NoticeListServlet extends HttpServlet{
 
 			int pageCnt = noticeDao.getCount();
 			int pageUnit = 10;
-			pageCnt = pageCnt / pageUnit + 1;
+			pageCnt = (int)Math.ceil((double)pageCnt / pageUnit);
 			
 //			if(pageNo == 0) {
 //				noticeList = (ArrayList<NoticeDto>)noticeDao.selectList();
