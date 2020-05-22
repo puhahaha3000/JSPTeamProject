@@ -13,14 +13,14 @@
 			<ul id="mainNav">
 				<c:if test="${member.grade eq '1'}">
 					<li>
-						<a href="<%=request.getContextPath()%>/member/list">회원목록</a>
+						<a id="navMemberList" href="<%=request.getContextPath()%>/member/list">회원목록</a>
 					</li>
 				</c:if>
 				<li>
-					<a href="<%=request.getContextPath()%>/bulletin/list">게시판</a>
+					<a id="navBulletinList" href="<%=request.getContextPath()%>/bulletin/list">게시판</a>
 				</li>
 				<li>
-					<a href="<%=request.getContextPath()%>/notice/list">공지사항</a>
+					<a id="navNoticeList" href="<%=request.getContextPath()%>/notice/list">공지사항</a>
 				</li>
 			</ul>
 		
@@ -47,3 +47,23 @@
 		</div>
 	</div>
 
+<script type="text/javascript">
+	window.onload = function(){
+		var navObj = '';
+		var locStr = location.pathname;
+		
+		if (locStr == "/holySite/member/list") {
+			navObj = document.getElementById("navMemberList");
+		} else if(locStr == "/holySite/bulletin/list"){
+			navObj = document.getElementById("navBulletinList");
+		} else if(locStr == "/holySite/notice/list"){
+			navObj = document.getElementById("navNoticeList");
+		}
+		
+		if(navObj != ''){
+			navObj.style.backgroundColor = "#FFFFFF";
+			navObj.style.color = "#59b1eb";
+		}
+	}
+	
+</script>
