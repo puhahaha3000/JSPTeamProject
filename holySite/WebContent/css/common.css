@@ -60,6 +60,11 @@ ul#mainNav {
 	float:left;
 }
 
+table.bulletin{
+	width: 800px;
+	
+}
+
 table.borderNone{
 	border: none;
 }
