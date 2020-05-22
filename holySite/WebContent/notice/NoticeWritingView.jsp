@@ -24,7 +24,8 @@
 		<form action="./add" method="post">
 		작성자:<input type="text"  name="writer" value="${member.nickname }"><br>
 		제목:<input type="text"  name="title"><br>
-		내용:<input type="text"  name="text" style="width: 500px; height: 500px;"><br>
+		<h4>내용:</h4>
+		<textarea name="text" style="width: 500px; height: 500px; resize: none"></textarea><br>
 		<input type="hidden" name="writerNo" value="${member.no }">
 		<div style="margin-left: 35px;">
 			<input type="submit" value="추가">
