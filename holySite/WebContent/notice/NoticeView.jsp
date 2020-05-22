@@ -45,11 +45,11 @@
 			</c:forEach>
 		</table>
 		
-		<input type="button" value="&#8592;" onclick="pageMovePre(${pageNo})">
+		<input class="pageBtn" type="button" value="&#8592;" onclick="pageMovePre(${pageNo})">
 		<c:forEach var="i" begin="1" end="${pageCnt}">
-			<input type="button" value="${i}" onclick="pageMove(${i})">
+			<input class="pageBtn" type="button" value="${i}" onclick="pageMove(${i})">
 		</c:forEach>
-		<input type="button" value="&#8594;" onclick="pageMoveNext(${pageNo}, ${pageCnt})">
+		<input class="pageBtn" type="button" value="&#8594;" onclick="pageMoveNext(${pageNo}, ${pageCnt})">
 		
 		<c:if test="${member.grade eq '1'}">
 			<button onclick="addTable();">추가</button>
