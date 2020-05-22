@@ -23,8 +23,8 @@
 		</c:if>
 		<form action="./update" method="post">
 		<c:if test="${member.grade eq '1'}">
-			번호:<input type="text" name="no" value="${noticeDto.no}"><br>
-			작성자:<input type="text"  name="writer" value="${noticeDto.writer.nickname}"><br>
+			번호:<input type="text" name="no" value="${noticeDto.no}" readonly="readonly"><br>
+			작성자:<input type="text"  name="writer" value="${noticeDto.writer.nickname}" readonly="readonly"><br>
 			제목:<input type="text"  name="title" value="${noticeDto.title}"><br>
 			<h3>내용:</h3><textarea  name="text" style="width: 500px; height: 500px; resize: none;">${noticeDto.text}
 			</textarea><br>

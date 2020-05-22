@@ -19,15 +19,15 @@
 
 	<div>
 		<jsp:include page="/Header.jsp"/>
-		<div style="margin-left: 50px; margin-top: 20px;">
-		<h3>글쓰기</h3>
-		<form action="./add" method="post">
-		작성자:<input type="text"  name="writer" value="${member.nickname }"><br>
-		제목:<input type="text"  name="title"><br>
-		<h4>내용:</h4>
-		<textarea name="text" style="width: 500px; height: 500px; resize: none"></textarea><br>
-		<input type="hidden" name="writerNo" value="${member.no }">
-		<div style="margin-left: 35px;">
+			<div style="margin-left: 50px; margin-top: 20px;">
+			<h3>글쓰기</h3>
+			<form action="./add" method="post">
+			작성자:<input type="text"  name="writer" value="${member.nickname }" readonly="readonly"><br><br>
+			제목:<input type="text"  name="title"><br><br>
+			<h4>내용:</h4>
+			<textarea name="text" style="width: 500px; height: 500px; resize: none"></textarea><br><br>
+			<input type="hidden" name="writerNo" value="${member.no }">
+			<div>
 			<input type="submit" value="추가">
 			<input type="reset" value="취소" onclick="pageMoveListFnc();">
 		</div>
