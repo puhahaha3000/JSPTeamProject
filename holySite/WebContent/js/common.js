@@ -1,6 +1,6 @@
 function navBtnCngFnc(){
 	var navObj = '';
-	var locStr = location.pathname.split("/")[1];
+	var locStr = location.pathname.split("/")[2];
 	
 	if (locStr == "member") {
 		navObj = document.getElementById("navMember");
