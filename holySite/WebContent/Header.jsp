@@ -13,14 +13,14 @@
 			<ul id="mainNav">
 				<c:if test="${member.grade eq '1'}">
 					<li>
-						<a id="navMemberList" href="<%=request.getContextPath()%>/member/list">회원목록</a>
+						<a id="navMember" href="<%=request.getContextPath()%>/member/list">회원목록</a>
 					</li>
 				</c:if>
 				<li>
-					<a id="navBulletinList" href="<%=request.getContextPath()%>/bulletin/list">게시판</a>
+					<a id="navBulletin" href="<%=request.getContextPath()%>/bulletin/list">게시판</a>
 				</li>
 				<li>
-					<a id="navNoticeList" href="<%=request.getContextPath()%>/notice/list">공지사항</a>
+					<a id="navNotice" href="<%=request.getContextPath()%>/notice/list">공지사항</a>
 				</li>
 			</ul>
 		
@@ -46,31 +46,3 @@
 			</c:if>
 		</div>
 	</div>
-
-<script type="text/javascript">
-	window.onload = function(){
-		var navObj = '';
-		var locStr = location.pathname;
-		
-		if (locStr == "/holySite/member/list" 
-			|| locStr == "/holySite/member/update" 
-			|| locStr == "/holySite/member/add") {
-			
-			navObj = document.getElementById("navMemberList");
-		} else if(locStr == "/holySite/bulletin/list"
-		 	|| locStr == "/holySite/bulletin/update"){
-			
-			navObj = document.getElementById("navBulletinList");
-		} else if(locStr == "/holySite/notice/list"
-			|| locStr == "/holySite/notice/update"){
-			
-			navObj = document.getElementById("navNoticeList");
-		}
-		
-		if(navObj != ''){
-			navObj.style.backgroundColor = "#FFFFFF";
-			navObj.style.color = "#59b1eb";
-		}
-	}
-	
-</script>
