@@ -33,6 +33,8 @@
 						${member.nickname}님 안녕하세요.
 					</c:if>
 					&nbsp;&nbsp;&nbsp;&nbsp;
+					<a href="<%=request.getContextPath()%>/member/update?no=${member.no}">회원정보수정</a>
+					&nbsp;&nbsp;
 					<a href="<%=request.getContextPath()%>/auth/logout">로그아웃</a>
 				</span>
 			</c:if>
