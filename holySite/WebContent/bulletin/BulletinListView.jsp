@@ -35,7 +35,7 @@
 			</tr>
 		</c:forEach>
 			<tr>
-				<td>
+				<td colspan="4">
 					<input id="hiddenPageNo" type="hidden" value="${pageNo}">
 					
 					<input class="pageBtn" type="button" value="&lArr;" onclick="pagePreMove(${pageNo}, ${pageCnt})">
