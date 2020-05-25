@@ -18,13 +18,12 @@
 	
 	.bottomBtn {
 		margin-top: 30px; 
-		margin-bottom: 30px; 
-		margin-right: 10px;
 		width: 90px; 
 		height: 40px; 
 		font-weight: bold; 
 		font-size: 15px;"
 	}
+	
 </style>
 
 
@@ -43,49 +42,51 @@
 	
 		<table>
 			<tr>
-				<th>회원번호</th>
-				<th>닉네임</th>
-				<th>이메일</th>
-				<th>회원등급</th>
-				<th>수정</th>
-				<th>삭제</th>
+				<th style="width: 100px;">회원번호</th>
+				<th style="width: 200px;">닉네임</th>
+				<th style="width: 200px;">이메일</th>
+				<th style="width: 100px;">회원등급</th>
+				<th style="width: 100px;">수정</th>
+				<th style="width: 100px;">삭제</th>
 			</tr>
 			<c:forEach var="memberDto" items="${memberList}">
 				<tr>
 					<td>${memberDto.no}</td>
 					<td>${memberDto.nickname}</td>
 					<td>${memberDto.email}</td>
-					<td>
+					<td style="text-align: center;">
 						<c:choose>
-							<c:when test="${memberDto.grade eq '1'}"><a style="color:#FF3333">관리자</a></c:when>
-							<c:when test="${memberDto.grade eq '0'}">회원</c:when>
+							<c:when test="${memberDto.grade eq '1'}"><a style="color:#FF3333;" >관리자</a></c:when>
+							<c:when test="${memberDto.grade eq '0'}" >회원</c:when>
 							<c:otherwise>사장님</c:otherwise>
 						</c:choose>
 
 					</td>
-					<td><button class ="listBtn" onclick="updateFnc(${memberDto.no})">수정</button></td>
-					<td><button class ="listBtn" onclick="deleteFnc(${memberDto.no});">삭제</button></td>
+					<td style="text-align: center;"><button class ="listBtn" onclick="updateFnc(${memberDto.no})">수정</button></td>
+					<td style="text-align: center;"><button class ="listBtn" onclick="deleteFnc(${memberDto.no});">삭제</button></td>
 				</tr>	
 			</c:forEach>		
 		</table>
 		
-		<input id="hiddenPageNo" type="hidden" value="${pageNo}">
-		<input class="pageBtn" type="button" value="&lArr;" onclick="pagePreMove(${pageNo}, ${pageCnt})">
-		<input class="pageBtn" type="button" value="&#8592;" onclick="pageMovePre(${pageNo})">
-		<fmt:parseNumber value="${((pageNo - 1) / 10)}" type="number" var ="paNo" integerOnly="true"></fmt:parseNumber>
-
-		<c:set var="startNo" value="${paNo * 10 + 1}"></c:set>
-		<c:set var="endNo" value="${(paNo + 1) * 10}"></c:set>
-		<c:if test="${endNo > pageCnt }">
-			<c:set var="endNo" value="${pageCnt }"></c:set>
-		</c:if>
-		
-		<c:forEach var="i" begin="${startNo}" end="${endNo}">
-			<input class="pageBtn" type="button" value="${i}" onclick="pageMove(${i})">
-		</c:forEach>
-		<input class="pageBtn" type="button" value="&#8594;" onclick="pageMoveNext(${pageNo}, ${pageCnt})">
-		<input class="pageBtn" type="button" value="&rArr;" onclick="pageNextMove(${pageNo}, ${pageCnt} )">
-		<br>
+		<div style="text-align: center; width: 905px; margin-top: 20px;">
+			<input id="hiddenPageNo" type="hidden" value="${pageNo}">
+			<input class="pageBtn" type="button" value="&lArr;" onclick="pagePreMove(${pageNo}, ${pageCnt})">
+			<input class="pageBtn" type="button" value="&#8592;" onclick="pageMovePre(${pageNo})">
+			<fmt:parseNumber value="${((pageNo - 1) / 10)}" type="number" var ="paNo" integerOnly="true"></fmt:parseNumber>
+	
+			<c:set var="startNo" value="${paNo * 10 + 1}"></c:set>
+			<c:set var="endNo" value="${(paNo + 1) * 10}"></c:set>
+			<c:if test="${endNo > pageCnt }">
+				<c:set var="endNo" value="${pageCnt }"></c:set>
+			</c:if>
+			
+			<c:forEach var="i" begin="${startNo}" end="${endNo}">
+				<input class="pageBtn" type="button" value="${i}" onclick="pageMove(${i})">
+			</c:forEach>
+			<input class="pageBtn" type="button" value="&#8594;" onclick="pageMoveNext(${pageNo}, ${pageCnt})">
+			<input class="pageBtn" type="button" value="&rArr;" onclick="pageNextMove(${pageNo}, ${pageCnt} )">
+			<br>
+		</div>
 		
 		<button class="bottomBtn" onclick="addFnc();">회원추가</button>
 	
@@ -111,9 +112,10 @@
 		location.href='./update?no='+no;
 	}
 	function deleteFnc(no) {
-		const result = confirm('정말 탈퇴하시겠습니까?')
+		const result = confirm('정말 삭제하시겠습니까?')
 		if(result){
 			location.href='./delete?no='+no;
+			alert("삭제되었습니다");
 		}else{
 			return false;
 		}	
