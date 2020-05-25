@@ -24,12 +24,12 @@
 		<jsp:include page="/Header.jsp"/>
 		
 		
-		<form action="./update" method="post">
+		<form id="updateForm" action="./update" method="post">
 			<table>
 				<tr>
 					<td>아이디(이메일)</td>		
 					<td>
-						<input type="text" id="inputId" value="${memberDto.email}" name='email' disabled="disabled">
+						<input type="text" id="inputId" value="${memberDto.email}" name='email' readonly="readonly">
 						<input type="button" value="변경" onclick="checkIdFnc()">
 						<input id="idChk" type="hidden" value="false">
 					</td>		
@@ -37,7 +37,7 @@
 				<tr>
 					<td>닉네임</td>		
 					<td>
-						<input type="text" id="inputNick" value="${memberDto.nickname}" name='nickname' disabled="disabled">
+						<input type="text" id="inputNick" value="${memberDto.nickname}" name='nickname' readonly="readonly">
 						<input type="button" value="변경" onclick="checkNicknameFnc()">
 						<input id="nickChk" type="hidden" value="false">
 					</td>		
@@ -105,12 +105,13 @@
 	function updateFnc(no) {
 		var pwd = document.getElementsByName("pwd")[0];
 		var pwdChk = document.getElementsByName("pwdChk")[0];
+		var formObj = document.getElementById("updateForm");
 		
 		if(pwd.value==pwdChk.value){
 			alert("수정되었습니다");
 			formObj.submit();
 		}else{
-			alert("비밀번호가 일치하지 않습니다")
+			alert("비밀번호가 일치하지 않습니다");
 			return false;
 		}
 	}
