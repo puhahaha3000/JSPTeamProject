@@ -18,7 +18,7 @@ function navBtnCngFnc(){
 
 function pageBtnCngFnc(){
 	var navObjArr = document.getElementsByClassName("pageBtn");
-	var locInt = <%=request.getAttribute("pageNo")%>;
+	var locInt = document.getElementById("hiddenPageNo");
 	var navObj = '';
 	
 	for (var i = 0; i < navObjArr.length; i++) {
