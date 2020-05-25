@@ -35,6 +35,8 @@
 		</c:forEach>
 		</table>
 		
+		<input class="pageBtn" type="button" value="&lArr;" onclick="pagePreMove(${pageNo}, ${pageCnt})">
+		
 		<input class="pageBtn" type="button" value="&#8592;" onclick="pageMovePre(${pageNo})">
 		
 		<fmt:parseNumber value="${((pageNo - 1) / 10)}" type="number" var ="paNo" integerOnly="true"></fmt:parseNumber>
@@ -49,7 +51,10 @@
 			<input class="pageBtn" type="button" value="${i}" onclick="pageMove(${i})">
 		</c:forEach>
 		
+		
 		<input class="pageBtn" type="button" value="&#8594;" onclick="pageMoveNext(${pageNo}, ${pageCnt})">
+		
+		<input class="pageBtn" type="button" value="&rArr;" onclick="pageNextMove(${pageNo}, ${pageCnt} )">
 		
 		<form action="./add">
 			<button>글쓰기</button>
@@ -106,6 +111,24 @@
 		}
 		location.href="./list?pageNo=" + obj;
 	}
+	
+	function pagePreMove(obj, pageCnt){
+		obj = (obj - 10) - (obj % 10) + 1;
+		if(obj < 1){
+			obj = 1;
+		}
+		location.href="./list?pageNo=" + obj;
+	}
+	
+	function pageNextMove(obj, pageCnt){
+		obj = (obj + 10) - (obj % 10) + 1;
+		if(obj > pageCnt){
+			obj = pageCnt;
+		}
+		location.href="./list?pageNo=" + obj;
+	}
+	
+	
 	
 </script>
 
