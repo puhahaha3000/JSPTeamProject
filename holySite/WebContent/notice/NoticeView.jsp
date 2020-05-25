@@ -45,7 +45,7 @@
 				</tr>
 			</c:forEach>
 		</table>
-		
+		<input class="pageBtn" type="button" value="&lArr;" onclick="pagePreMove(${pageNo}, ${pageCnt})">
 		<input class="pageBtn" type="button" value="&#8592;" onclick="pageMovePre(${pageNo})">
 		<fmt:parseNumber value="${((pageNo - 1) / 10)}" type="number" var ="paNo" integerOnly="true"></fmt:parseNumber>
 
@@ -59,6 +59,7 @@
 			<input class="pageBtn" type="button" value="${i}" onclick="pageMove(${i})">
 		</c:forEach>
 		<input class="pageBtn" type="button" value="&#8594;" onclick="pageMoveNext(${pageNo}, ${pageCnt})">
+		<input class="pageBtn" type="button" value="&rArr;" onclick="pageNextMove(${pageNo}, ${pageCnt} )">
 		<br>
 		<c:if test="${member.grade eq '1'}">
 			<button onclick="addTable();">추가</button>
@@ -72,9 +73,12 @@
 
 </body>
 
+<script type="text/javascript" src="../js/common.js"></script>
+
 <script type="text/javascript">
 
 	window.onload = function(){
+		navBtnCngFnc();
 		var navObjArr = document.getElementsByClassName("pageBtn");
 		var locInt = <%=request.getAttribute("pageNo")%>;
 		var navObj = '';
@@ -117,6 +121,23 @@
 		}
 		location.href="./list?pageNo=" + obj;
 	}
+	
+	function pagePreMove(obj, pageCnt){
+		obj = (obj - 10) - (obj % 10) + 1;
+		if(obj < 1){
+			obj = 1;
+		}
+		location.href="./list?pageNo=" + obj;
+	}
+	
+	function pageNextMove(obj, pageCnt){
+		obj = (obj + 10) - (obj % 10) + 1;
+		if(obj > pageCnt){
+			obj = pageCnt;
+		}
+		location.href="./list?pageNo=" + obj;
+	}
+	
 	
 </script>
 

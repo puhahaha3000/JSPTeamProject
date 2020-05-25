@@ -9,8 +9,13 @@
 <title>Insert title here</title>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/common.css" type="text/css">
 </head>
+<script type="text/javascript" src="../js/common.js"></script>
 <script type="text/javascript">
-	function pageMoveListFnc(){
+
+	window.onload = function() {
+		navBtnCngFnc();
+	}
+	function pageMoveListFnc() {
 		location.href = "./list";
 	}
 </script>
