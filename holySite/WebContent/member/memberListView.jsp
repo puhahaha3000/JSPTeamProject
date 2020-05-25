@@ -68,25 +68,24 @@
 			</c:forEach>		
 		</table>
 		
-		<div style="text-align: center; width: 905px; margin-top: 20px;">
-			<input id="hiddenPageNo" type="hidden" value="${pageNo}">
-			<input class="pageBtn" type="button" value="&lArr;" onclick="pagePreMove(${pageNo}, ${pageCnt})">
-			<input class="pageBtn" type="button" value="&#8592;" onclick="pageMovePre(${pageNo})">
-			<fmt:parseNumber value="${((pageNo - 1) / 10)}" type="number" var ="paNo" integerOnly="true"></fmt:parseNumber>
-	
-			<c:set var="startNo" value="${paNo * 10 + 1}"></c:set>
-			<c:set var="endNo" value="${(paNo + 1) * 10}"></c:set>
-			<c:if test="${endNo > pageCnt }">
-				<c:set var="endNo" value="${pageCnt }"></c:set>
-			</c:if>
-			
-			<c:forEach var="i" begin="${startNo}" end="${endNo}">
-				<input class="pageBtn" type="button" value="${i}" onclick="pageMove(${i})">
-			</c:forEach>
-			<input class="pageBtn" type="button" value="&#8594;" onclick="pageMoveNext(${pageNo}, ${pageCnt})">
-			<input class="pageBtn" type="button" value="&rArr;" onclick="pageNextMove(${pageNo}, ${pageCnt} )">
-			<br>
-		</div>
+
+		<input id="hiddenPageNo" type="hidden" value="${pageNo}">
+		<input class="pageBtn" type="button" value="&lArr;" onclick="pagePreMove(${pageNo}, ${pageCnt})">
+		<input class="pageBtn" type="button" value="&#8592;" onclick="pageMovePre(${pageNo})">
+		<fmt:parseNumber value="${((pageNo - 1) / 10)}" type="number" var ="paNo" integerOnly="true"></fmt:parseNumber>
+
+		<c:set var="startNo" value="${paNo * 10 + 1}"></c:set>
+		<c:set var="endNo" value="${(paNo + 1) * 10}"></c:set>
+		<c:if test="${endNo > pageCnt}">
+			<c:set var="endNo" value="${pageCnt -1}"></c:set>
+		</c:if>
+		
+		<c:forEach var="i" begin="${startNo}" end="${endNo}">
+			<input class="pageBtn" type="button" value="${i}" onclick="pageMove(${i})">
+		</c:forEach>
+		<input class="pageBtn" type="button" value="&#8594;" onclick="pageMoveNext(${pageNo}, ${pageCnt})">
+		<input class="pageBtn" type="button" value="&rArr;" onclick="pageNextMove(${pageNo}, ${pageCnt} )">
+		<br>
 		
 		<button class="bottomBtn" onclick="addFnc();">회원추가</button>
 	
