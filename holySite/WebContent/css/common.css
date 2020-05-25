@@ -80,6 +80,11 @@ table.bulletin th:nth-child(4){
 	width: 20%;
 }
 
+table.bulletin tr:last-child td{
+	border: none;
+	text-align: center;
+}
+
 table.borderNone{
 	border: none;
 }
