@@ -28,11 +28,19 @@
 			<table>
 				<tr>
 					<td>아이디(이메일)</td>		
-					<td><input type="text" value="${memberDto.email}" name='email'></td>		
+					<td>
+						<input type="text" id="inputId" value="${memberDto.email}" name='email' disabled="disabled">
+						<input type="button" value="변경" onclick="checkIdFnc()">
+						<input id="idChk" type="hidden" value="false">
+					</td>		
 				</tr>
 				<tr>
 					<td>닉네임</td>		
-					<td><input type="text" value="${memberDto.nickname}" name='nickname'></td>		
+					<td>
+						<input type="text" id="inputNick" value="${memberDto.nickname}" name='nickname' disabled="disabled">
+						<input type="button" value="변경" onclick="checkNicknameFnc()">
+						<input id="nickChk" type="hidden" value="false">
+					</td>		
 				</tr>
 				<tr>
 					<td>회원등급</td>		
@@ -44,11 +52,30 @@
 						</c:choose>
 					</td>		
 				</tr>
+				<tr>
+					<td>비밀번호</td>		
+					<td>
+						<input type="password" value="${memberDto.pwd}" name='pwd'>	
+					</td>		
+				</tr>
+				<tr>
+					<td>비밀번호 확인</td>		
+					<td>
+						<input type="password" value="" name='pwdChk'>	
+					</td>		
+				</tr>
 			</table>
-			<input type="hidden" value="${memberDto.no}" name='no'>		
-			<input type="submit" value="수정">
+			<input type="hidden" value="${memberDto.no}" name='no'>			
+			<input type="hidden" value="${memberDto.grade}" name='grade'>		
+
+			<input type="button" value="수정" onclick="updateFnc(${memberDto.no})">
 			<input type="button" value="삭제" onclick="deleteFnc(${memberDto.no})">
-			<input type="button" value="취소" onclick="pageMoveListFnc()">
+			<input type="hidden" value="" id="addBtn">
+			<c:choose>
+				<c:when test="${memberDto.grade eq '1'}"><input type="button" value="돌아가기" onclick="pageMoveListFnc()"></c:when>
+				<c:when test="${memberDto.grade eq '0'}"><input type="button" value="돌아가기" onclick="pageMoveListFnc2()"></c:when>
+				<c:otherwise><a>망했다</a></c:otherwise>
+			</c:choose>
 		</form>
 		
 		
@@ -63,6 +90,9 @@
 	function pageMoveListFnc(){
 		location.href = './list';
 	}
+	function pageMoveListFnc2(){
+		location.href = '../bulletin/list';
+	}
 	
 	function deleteFnc(no) {
 		const result = confirm('정말 탈퇴하시겠습니까?')
@@ -73,7 +103,39 @@
 		}	
 	}
 	function updateFnc(no) {
-		location.href = './update?no='+no;
+		var pwd = document.getElementsByName("pwd")[0];
+		var pwdChk = document.getElementsByName("pwdChk")[0];
+		
+		if(pwd.value==pwdChk.value){
+			alert("수정되었습니다");
+			formObj.submit();
+		}else{
+			alert("비밀번호가 일치하지 않습니다")
+			return false;
+		}
+	}
+	var openWin = '';
+
+	function checkIdFnc()	{
+
+		openWin = window.open("./idcheck",
+                "childForm", "width=570, height=350, resizable = no, scrollbars = no");  
+		
+		openWin.onload = function(){
+			openWin.document.getElementById("getText").value =  document.getElementById("inputId").value;
+		}
+
+	}
+	
+	function checkNicknameFnc()	{
+		
+		openWin = window.open("./nicknamecheck",
+                "childForm", "width=570, height=350, resizable = no, scrollbars = no");  
+		
+		openWin.onload = function(){
+			openWin.document.getElementById("getText2").value =  document.getElementById("inputNick").value;
+		}
+
 	}
 </script>
 

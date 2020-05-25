@@ -28,6 +28,7 @@
 						<td>
 							<input type="text" id="inputId" value="" name='email'>
 							<input type="button" value="중복확인" onclick="checkIdFnc()">
+							<input id="idChk" type="hidden" value="false">
 						</td>
 					</tr>
 					<tr>
@@ -35,6 +36,7 @@
 						<td>
 							<input type="text" id="inputNick" value="" name='nickname'>
 							<input type="button" value="중복확인" onclick="checkNicknameFnc()">
+							<input id="nickChk" type="hidden" value="false">
 						</td>		
 					</tr>
 					<tr>
@@ -47,7 +49,7 @@
 					</tr>
 				</table>
 				
-				<input type="button" onclick="checkFnc()" value="가입하기">
+				<input id="addBtn" type="button" onclick="checkFnc()" value="가입하기" disabled="disabled">
 				<input type="reset" value="초기화">
 				<input type="button" value="취소" onclick="pageMoveListFnc()">
 				
@@ -98,7 +100,7 @@
 	var openWin = '';
 
 	function checkIdFnc()	{
-		
+
 		openWin = window.open("./idcheck",
                 "childForm", "width=570, height=350, resizable = no, scrollbars = no");  
 		

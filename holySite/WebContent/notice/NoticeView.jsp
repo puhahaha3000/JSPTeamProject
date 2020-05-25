@@ -28,6 +28,7 @@
 	<div>
 		<jsp:include page="/Header.jsp"/>
 		<div style='margin-left: 50px; margin-top:20px;'>
+		<h1>공지 게시판</h1>
 		<table class='bulletin'>
 			<tr>
 				<th>글번호</th>
@@ -44,23 +45,28 @@
 					
 				</tr>
 			</c:forEach>
+				<tr>
+					<td colspan="4">
+					<input id="hiddenPageNo" type="hidden" value="${pageNo}">
+					<input class="pageBtn" type="button" value="&lArr;" onclick="pagePreMove(${pageNo}, ${pageCnt})">
+					<input class="pageBtn" type="button" value="&#8592;" onclick="pageMovePre(${pageNo})">
+					<fmt:parseNumber value="${((pageNo - 1) / 10)}" type="number" var ="paNo" integerOnly="true"></fmt:parseNumber>
+			
+					<c:set var="startNo" value="${paNo * 10 + 1}"></c:set>
+					<c:set var="endNo" value="${(paNo + 1) * 10}"></c:set>
+					<c:if test="${endNo > pageCnt }">
+						<c:set var="endNo" value="${pageCnt }"></c:set>
+					</c:if>
+					
+					<c:forEach var="i" begin="${startNo}" end="${endNo}">
+						<input class="pageBtn" type="button" value="${i}" onclick="pageMove(${i})">
+					</c:forEach>
+					<input class="pageBtn" type="button" value="&#8594;" onclick="pageMoveNext(${pageNo}, ${pageCnt})">
+					<input class="pageBtn" type="button" value="&rArr;" onclick="pageNextMove(${pageNo}, ${pageCnt} )">
+					</td>
+				</tr>
 		</table>
-		<input id="hiddenPageNo" type="hidden" value="${pageNo}">
-		<input class="pageBtn" type="button" value="&lArr;" onclick="pagePreMove(${pageNo}, ${pageCnt})">
-		<input class="pageBtn" type="button" value="&#8592;" onclick="pageMovePre(${pageNo})">
-		<fmt:parseNumber value="${((pageNo - 1) / 10)}" type="number" var ="paNo" integerOnly="true"></fmt:parseNumber>
-
-		<c:set var="startNo" value="${paNo * 10 + 1}"></c:set>
-		<c:set var="endNo" value="${(paNo + 1) * 10}"></c:set>
-		<c:if test="${endNo > pageCnt }">
-			<c:set var="endNo" value="${pageCnt }"></c:set>
-		</c:if>
 		
-		<c:forEach var="i" begin="${startNo}" end="${endNo}">
-			<input class="pageBtn" type="button" value="${i}" onclick="pageMove(${i})">
-		</c:forEach>
-		<input class="pageBtn" type="button" value="&#8594;" onclick="pageMoveNext(${pageNo}, ${pageCnt})">
-		<input class="pageBtn" type="button" value="&rArr;" onclick="pageNextMove(${pageNo}, ${pageCnt} )">
 		<br>
 		<c:if test="${member.grade eq '1'}">
 			<button onclick="addTable();">추가</button>

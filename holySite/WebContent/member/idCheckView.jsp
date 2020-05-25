@@ -47,11 +47,17 @@
 	
 
 	function inputIdFnc() {
-	
-		window.opener.document.getElementById("inputId").value = document.getElementsByName("email")[0].value;
-		window.close();
-	
 		
+		var parentObj = window.opener.document; 
+		parentObj.getElementById("inputId").value = document.getElementsByName("email")[0].value;
+		parentObj.getElementById("idChk").value = true;
+		
+		if(parentObj.getElementById("idChk").value == 'true' 
+				&& parentObj.getElementById("nickChk").value == 'true'){
+			parentObj.getElementById("addBtn").disabled = false;
+		}
+		
+		window.close()
 	}
 	
 // 	function rockDownFnc(){

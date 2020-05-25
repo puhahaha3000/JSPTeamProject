@@ -95,7 +95,7 @@ public class MemberUpdateServlet extends HttpServlet {
 				System.out.println("회원 정보 조회가 실패하였습니다.");
 			}
 			
-			res.sendRedirect("./list");
+			res.sendRedirect("./update?no="+no);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

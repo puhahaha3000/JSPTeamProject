@@ -47,10 +47,17 @@
 	
 
 	function inputNicknameFnc() {
-		window.opener.document.getElementById("inputNick").value = document.getElementsByName("nickname")[0].value;
+		var parentObj = window.opener.document; 
+		parentObj.getElementById("inputNick").value = document.getElementsByName("nickname")[0].value;
+		parentObj.getElementById("nickChk").value = true;
+
+		if(parentObj.getElementById("idChk").value == 'true' 
+				&& parentObj.getElementById("nickChk").value == 'true'){
+			parentObj.getElementById("addBtn").disabled = false;
+		}
+		
 		window.close();
 	}
-	
 // 	function rockDownFnc(){
 		
 // 		document.getElementsByName("email")[0].disabled=true;
