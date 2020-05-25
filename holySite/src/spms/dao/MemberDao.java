@@ -18,17 +18,39 @@ public class MemberDao {
 		this.conn = conn;
 	}
 
-	public List<MemberDto> selectList() throws Exception {
+	public List<MemberDto> selectList() throws Exception{
+		return this.selectList(0, 1);
+	}
+	
+	public List<MemberDto> selectList(int pageUnit, int pageNo) throws Exception {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-
-		String sql = "SELECT NO, NICKNAME, EMAIL, GRADE";
+		int startNo = 0;
+		int endNo = 0;
+		String sql = "";
+		
+		if(pageUnit != 0) {
+			sql += "select * from (";
+		}
+		sql += "SELECT ROWNUM RN, NO, NICKNAME, EMAIL, GRADE";
 		sql += " FROM MEMBER";
 		sql += " ORDER BY NO ASC";
-
+		
+		if(pageUnit != 0) {
+			sql += ") WHERE RN BETWEEN ? AND ?";
+			startNo = pageUnit * (pageNo - 1) + 1;
+			endNo = pageUnit * (pageNo);
+		}
+		
+		
 		try {
 			pstmt = conn.prepareStatement(sql);
 
+			if(startNo != 0 && endNo != 0) {
+				pstmt.setInt(1, startNo);
+				pstmt.setInt(2, endNo);
+			}
+			
 			rs = pstmt.executeQuery();
 
 			ArrayList<MemberDto> memberList = 
@@ -37,6 +59,9 @@ public class MemberDao {
 			String nickname = "";
 			String email = "";
 			String grade = "";
+			
+			MemberDao memberDao = new MemberDao();
+			memberDao.setConnection(conn);
 			
 			while (rs.next()) {
 				no = rs.getInt("NO");
@@ -384,5 +409,78 @@ public class MemberDao {
 		} // finally 종료
 
 	}
+	
+	public int memberCheckNickname(MemberDto memberDto) throws SQLException {
+		// TODO Auto-generated method stub
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		String sql = "";
+
+		sql = "SELECT COUNT(nickname) cnt";
+		sql += " FROM member";
+		sql += " where nickname = ?";
+
+		try {
+			pstmt = conn.prepareStatement(sql);
+
+			pstmt.setString(1, memberDto.getNickname());
+			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				return rs.getInt("cnt");
+			}
+			
+			return 0;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			throw e;
+		} finally {
+			try {
+				if (pstmt != null) {
+					pstmt.close();
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+		} // finally 종료
+
+	}
+	
+	public int getCount() throws SQLException  {
+		
+		int count = 0;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		String sql = "";
+		sql = "SELECT COUNT(*)";
+		sql += " FROM MEMBER";
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()){
+				count = rs.getInt(1);
+			}
+
+			
+		}catch (SQLException e) {
+			// TODO: handle exception
+			throw e;
+		}finally {
+			if (pstmt != null) {
+				pstmt.close();
+			}
+		}
+		return count;
+	}
+	
 	
 }

@@ -56,7 +56,7 @@
 			<c:set var="endNo" value="${pageCnt }"></c:set>
 		</c:if>
 		
-		<c:forEach var="i" begin="1" end="${pageCnt}">
+		<c:forEach var="i" begin="${startNo}" end="${endNo}">
 			<input class="pageBtn" type="button" value="${i}" onclick="pageMove(${i})">
 		</c:forEach>
 		<input class="pageBtn" type="button" value="&#8594;" onclick="pageMoveNext(${pageNo}, ${pageCnt})">

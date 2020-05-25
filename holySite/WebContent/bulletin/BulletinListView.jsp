@@ -17,7 +17,7 @@
 	<div>
 		<jsp:include page="/Header.jsp"/>
 		<div style='margin-left: 50px; margin-top:20px;'>
-		<table>
+		<table class='bulletin'>
 		<tr>
 			<th>번호</th>
 			<th>제목</th>
@@ -34,6 +34,7 @@
 			</tr>
 		</c:forEach>
 		</table>
+		<input id="hiddenPageNo" type="hidden" value="${pageNo}">
 		
 		<input class="pageBtn" type="button" value="&lArr;" onclick="pagePreMove(${pageNo}, ${pageCnt})">
 		
@@ -67,23 +68,12 @@
 
 </body>
 
+<script type="text/javascript" src="../js/common.js"></script>
+
 <script type="text/javascript">
 	window.onload = function(){
-	var navObjArr = document.getElementsByClassName("pageBtn");
-	var locInt = <%=request.getAttribute("pageNo")%>;
-	var navObj = '';
-	
-	for (var i = 0; i < navObjArr.length; i++) {
-		if(navObjArr[i].value == locInt){
-			navObj = navObjArr[i];
-			break;
-		}
-	}
-	
-	if(navObj != ''){
-		navObj.style.backgroundColor = "#FFFFFF";
-		navObj.style.color = "#59b1eb";
-	}
+	navBtnCngFnc();
+	pageBtnCngFnc();
 }
 	
 	function addTable() {
