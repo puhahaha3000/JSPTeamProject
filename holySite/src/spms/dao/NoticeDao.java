@@ -34,13 +34,13 @@ public class NoticeDao {
 			sql += "select * from (";
 		}
 		sql += "SELECT ROWNUM rn, NO, TITLE, WRITER, CRE_DATE";
-		sql += " FROM NOTICE";
-		sql += " ORDER BY NO DESC";
+		sql += " FROM (SELECT * FROM NOTICE ORDER BY NO DESC)";
 		if(pageUnit != 0) {
 			sql += ") WHERE rn BETWEEN ? AND ?";
 			startNo = pageUnit * (pageNo - 1) + 1;
 			endNo = pageUnit * (pageNo);
 		}
+		
 		
 		
 		try {

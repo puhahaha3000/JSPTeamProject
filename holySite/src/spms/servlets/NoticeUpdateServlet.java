@@ -80,6 +80,8 @@ public class NoticeUpdateServlet extends HttpServlet{
 			noticeDto.setText(text);
 			noticeDto.setNo(no);
 			
+			
+			
 			ServletContext sc = this.getServletContext();
 
 			conn = (Connection) sc.getAttribute("conn");

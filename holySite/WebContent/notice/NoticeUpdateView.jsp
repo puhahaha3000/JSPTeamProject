@@ -14,8 +14,8 @@
 	window.onload = function() {
 		navBtnCngFnc();
 	}
-	function pageMoveListFnc(){
-		location.href = "./list";
+	function pageMoveListFnc(obj){
+		location.href = "./list?pageNo="+ obj;
 	}
 </script>
 <body>
@@ -25,6 +25,7 @@
 		<c:if test="${member.grade eq '1'}">
 		<h3>글수정</h3>
 		</c:if>
+		
 		<form action="./update" method="post">
 		<c:if test="${member.grade eq '1'}">
 			번호:<input type="text" name="no" value="${noticeDto.no}" readonly="readonly"><br>
@@ -34,6 +35,7 @@
 			</textarea><br>
 		</c:if>
 		<c:if test="${member.grade ne '1'}">
+			
 			번호:<input type="text" name="no" value="${noticeDto.no}" readonly="readonly"><br>
 			작성자:<input type="text"  name="writer" value="${noticeDto.writer.nickname}" readonly="readonly"><br>
 			제목:<input type="text"  name="title" value="${noticeDto.title}" readonly="readonly"><br>
@@ -47,7 +49,7 @@
 			<input type="button" value="삭제">
 		</a>
 		</c:if>
-			<input type="reset" value="취소" onclick="pageMoveListFnc();">
+			<input type="reset" value="취소" onclick="pageMoveListFnc(${pageNo});">
 		
 		
 		</form>
