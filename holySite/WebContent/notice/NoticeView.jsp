@@ -45,6 +45,7 @@
 				</tr>
 			</c:forEach>
 		</table>
+		<input id="hiddenPageNo" type="hidden" value="${pageNo}">
 		<input class="pageBtn" type="button" value="&lArr;" onclick="pagePreMove(${pageNo}, ${pageCnt})">
 		<input class="pageBtn" type="button" value="&#8592;" onclick="pageMovePre(${pageNo})">
 		<fmt:parseNumber value="${((pageNo - 1) / 10)}" type="number" var ="paNo" integerOnly="true"></fmt:parseNumber>
@@ -79,21 +80,8 @@
 
 	window.onload = function(){
 		navBtnCngFnc();
-		var navObjArr = document.getElementsByClassName("pageBtn");
-		var locInt = <%=request.getAttribute("pageNo")%>;
-		var navObj = '';
+		pageBtnCngFnc();
 		
-		for (var i = 0; i < navObjArr.length; i++) {
-			if(navObjArr[i].value == locInt){
-				navObj = navObjArr[i];
-				break;
-			}
-		}
-		
-		if(navObj != ''){
-			navObj.style.backgroundColor = "#FFFFFF";
-			navObj.style.color = "#59b1eb";
-		}
 	}
 	
 	function addTable() {
