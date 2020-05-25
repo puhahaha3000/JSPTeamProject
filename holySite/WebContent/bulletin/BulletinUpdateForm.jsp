@@ -43,9 +43,10 @@
       	제목:<input type="text" name="title" value="${bulletinDto.title}" readonly="readonly"><br>
       	<h3>내용:</h3><textarea name="text" style="width: 500px; height: 500px;  resize:none;" readonly="readonly">${bulletinDto.text}</textarea><br>
       </c:if>
-      
+		<c:if test="${bulletinDto.writer.nickname eq member.nickname}">      
+      		<input type="submit" value="수정">
+      	</c:if>
       <c:if test="${member.grade eq '1' || bulletinDto.writer.nickname eq member.nickname}">
-      	<input type="submit" value="수정">
       	<input type="button" value="삭제" onclick='pageMoveDeleteFnc(${bulletinDto.no});'>
       </c:if>
       <input type="button" value="취소" onClick='pageMoveListFnc();'>

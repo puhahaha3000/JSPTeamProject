@@ -76,8 +76,8 @@
 
 		<c:set var="startNo" value="${paNo * 10 + 1}"></c:set>
 		<c:set var="endNo" value="${(paNo + 1) * 10}"></c:set>
-		<c:if test="${endNo > pageCnt }">
-			<c:set var="endNo" value="${pageCnt }"></c:set>
+		<c:if test="${endNo > pageCnt}">
+			<c:set var="endNo" value="${pageCnt -1}"></c:set>
 		</c:if>
 		
 		<c:forEach var="i" begin="${startNo}" end="${endNo}">
