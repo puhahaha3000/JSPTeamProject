@@ -46,7 +46,7 @@ public class BulletinListServlet extends HttpServlet {
 
 			int pageCnt = bulletinDao.getCount();
 			int pageUnit = 10;
-			pageCnt = pageCnt / pageUnit + 1;
+			pageCnt = (pageCnt - 1) / pageUnit + 1;
 			
 			bulletinList = (ArrayList<BulletinDto>)bulletinDao.selectList(pageUnit, pageNo);
 

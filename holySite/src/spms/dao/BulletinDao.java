@@ -39,23 +39,20 @@ public class BulletinDao {
 		int startNo = 0;
 		int endNo = 0;
 		String sql = "";
-		if(pageUnit != 0) {
-			sql += "select * from (";
-		}
-		sql += "SELECT ROWNUM rn, NO, TITLE, WRITER, CRE_DATE";
-		sql += " FROM BULLETIN";
-		sql += " ORDER BY NO DESC";
-		if(pageUnit != 0) {
-			sql += ") WHERE rn BETWEEN ? AND ?";
-			startNo = pageUnit * (pageNo - 1) + 1;
-			endNo = pageUnit * (pageNo);
-		}
 		
+		if(pageUnit != 0) {
+	         sql += "select * from (";
+	      }
+	      sql += "SELECT ROWNUM rn, NO, TITLE, WRITER, CRE_DATE";
+	      sql += " FROM (SELECT * FROM BULLETIN ORDER BY NO DESC)";
+	      if(pageUnit != 0) {
+	         sql += ") WHERE rn BETWEEN ? AND ?";
+	         startNo = pageUnit * (pageNo - 1) + 1;
+	         endNo = pageUnit * (pageNo);
+	      }
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
-//			pstmt.setInt(1, startRow);
-//			pstmt.setInt(2, endRow);
 			
 			if(startNo != 0 && endNo != 0) {
 				pstmt.setInt(1, startNo);

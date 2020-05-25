@@ -17,12 +17,13 @@
 	<div>
 		<jsp:include page="/Header.jsp"/>
 		<div style='margin-left: 50px; margin-top:20px;'>
+		<h1>게시판</h1>
 		<table class='bulletin'>
 		<tr>
-			<th>번호</th>
+			<th>글번호</th>
 			<th>제목</th>
 			<th>작성자</th>
-			<th>작성일자</th>
+			<th>작성일</th>
 		</tr>
 
 		<c:forEach var="bulletinDto" items="${bulletinList}">
