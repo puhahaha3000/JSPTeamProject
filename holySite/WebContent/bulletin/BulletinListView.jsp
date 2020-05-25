@@ -57,10 +57,11 @@
 		
 		<input class="pageBtn" type="button" value="&rArr;" onclick="pageNextMove(${pageNo}, ${pageCnt} )">
 		
+		<c:if test="${member.grade eq '1' || member.grade eq '0'}">
 		<form action="./add">
 			<button>글쓰기</button>
 		</form>
-		
+		</c:if>
 		</div>
 		<jsp:include page="/Tail.jsp"/>
 		
