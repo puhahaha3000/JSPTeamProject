@@ -80,7 +80,7 @@ table.bulletin th:nth-child(4){
 	width: 20%;
 }
 
-table.bulletin tr:last-child td{
+table.bulletin td:last-child{
 	border: none;
 	text-align: center;
 	colspan: "4";
