@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import spms.dao.MemberDao;
 import spms.dto.MemberDto;
+import spms.dto.NoticeDto;
 
 @WebServlet(value="/member/list")
 public class MemberListServlet extends HttpServlet{
@@ -35,12 +36,32 @@ public class MemberListServlet extends HttpServlet{
 			
 			ArrayList<MemberDto> memberList = null;
 			
+			int pageNo = 0;
+			try {
+				pageNo = Integer.parseInt(request.getParameter("pageNo"));
+			} catch (Exception e) {
+				// TODO: handle exception
+				pageNo = 1;
+			}
+
+			int pageCnt = memberDao.getCount();
+			int pageUnit = 10;
+			pageCnt = (int)Math.ceil((double)pageCnt / pageUnit);
+			
+//			if(pageNo == 0) {
+//				noticeList = (ArrayList<NoticeDto>)noticeDao.selectList();
+//			} else {
+				memberList = (ArrayList<MemberDto>)memberDao.selectList(pageUnit, pageNo);
+//			}
+			
 			// 데이터베이스에서 회원 정보를 가져온다
-			memberList = (ArrayList<MemberDto>)memberDao.selectList();
+			//memberList = (ArrayList<MemberDto>)memberDao.selectList();
 			
 			// request에 회원 목록 데이터 보관한다
 			request.setAttribute("memberList", memberList);
-
+			request.setAttribute("pageCnt", pageCnt);
+			request.setAttribute("pageNo", pageNo);
+			
 			response.setContentType("text/html");
 			response.setCharacterEncoding("UTF-8");
 			

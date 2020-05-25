@@ -47,9 +47,11 @@
 	
 
 	function inputIdFnc() {
-			
+	
 		window.opener.document.getElementById("inputId").value = document.getElementsByName("email")[0].value;
 		window.close();
+	
+		
 	}
 	
 // 	function rockDownFnc(){
