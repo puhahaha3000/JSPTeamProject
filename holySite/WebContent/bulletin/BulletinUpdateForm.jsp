@@ -21,7 +21,7 @@
 	}
 	
 	function pageMoveListFnc(){
-		location.href = "./list";
+		location.href = "./list?pageNo="+ <%=request.getAttribute("pageNo")%>;
 	}
 </script>
 

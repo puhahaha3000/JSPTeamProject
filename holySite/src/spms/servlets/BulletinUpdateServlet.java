@@ -35,13 +35,14 @@ public class BulletinUpdateServlet extends HttpServlet {
 		try {
 			mNo = req.getParameter("no");
 			int no = Integer.parseInt(mNo);
-
+			String pageNo = req.getParameter("pageNo");
 			BulletinDao bulletinDao = new BulletinDao();
 			bulletinDao.setConnection(conn);
 			
 			BulletinDto bulletinDto = bulletinDao.bulletinSelectOne(no);
 			
 			req.setAttribute("bulletinDto", bulletinDto);
+			req.setAttribute("pageNo", pageNo);
 			rd = req.getRequestDispatcher("./BulletinUpdateForm.jsp");
 			rd.forward(req, res);
 

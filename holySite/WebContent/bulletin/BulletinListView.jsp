@@ -25,11 +25,11 @@
 			<th>작성자</th>
 			<th>작성일</th>
 		</tr>
-
+		
 		<c:forEach var="bulletinDto" items="${bulletinList}">
 			<tr>
 				<td>${bulletinDto.no}</td>
-				<td><a href="./update?no=${bulletinDto.no}">${bulletinDto.title}</a></td>
+				<td><a href="./update?no=${bulletinDto.no}&pageNo=${pageNo}">${bulletinDto.title}</a></td>
 				<td>${bulletinDto.writer.nickname}</td>
 				<td>${bulletinDto.createdDate}</td>
 			</tr>
